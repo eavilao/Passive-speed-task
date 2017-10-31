@@ -1,0 +1,11 @@
+function [x2,y2] = groupmean(x,y,groupsize)
+if nargin<3, groupsize=1; end
+if ~isempty(x)
+    x2 = unique(x);
+    x2 = reshape(x2,[groupsize length(x2)/groupsize])';
+    for i=1:length(x2)/groupsize
+        y2(i) = nanmean(y(x==x2(i)));
+    end
+else
+    x2=[]; y2=[];
+end

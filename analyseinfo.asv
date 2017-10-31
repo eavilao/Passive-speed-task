@@ -1,0 +1,37 @@
+function fisherinfo = analyseinfo(stim,nspk,modality,slope)
+
+%%
+modalities = stim.modality;
+switch modality
+    case 'ves_nofix'
+        indx = modalities==0;
+    case 'ves'
+        indx = modalities==1;
+    case 'vis'
+        indx = modalities==2;
+    case 'com'
+        indx = modalities==3;
+end
+stim = unique(stim.speed(indx));
+nspk = nspk(:,indx);
+
+%%
+nstims = length(stim);
+nunits = size(nspk,1); 
+for i=1:nstims    
+    for k=1:nunits
+        clear J;
+        these_units = nchoosek(1:nunits,k);
+        for j=1:size(these_units,1)
+            J(j) = 0;
+            these_slopes = slope(these_units(j,:),i);
+            these_nspk = nspk(these_units(j,:),:);
+            [c,~,l]=pca(these_nspk');
+            for m=1:size(c,2)
+                J(j) = J(j) + ((these_slopes'*c(:,m))^2)/l(m); % fisher info in the first component
+            end
+        end
+        fisherinfo.mean(k,i) = mean(J);
+        fisherinfo.raw(k,i).J = J;
+    end
+end
