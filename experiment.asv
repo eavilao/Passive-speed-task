@@ -210,8 +210,8 @@ classdef experiment < handle
                     if strcmp(unit_num,'all')
                         for i=1:length(this.multiunits)
                             this.multiunits(i).plot(i,this.name,plottype);
-%                             fname2 = ['m' num2str(this.multiunits(i).monk_id) 's' num2str(this.multiunits(i).session_id) 'ch' num2str(this.multiunits(i).channel_no)]; 
-%                             print(fname2,'-depsc2');
+                            a=[this.multiunits(i).monk_id this.multiunits(i).session_id this.multiunits(i).channel_no];
+                            print(a, '-depsc', '-bestfit');
                             waitforbuttonpress; close all;
                         end
                     elseif ~isempty(unit_num)

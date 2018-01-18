@@ -200,7 +200,7 @@ switch exp_name
                 
                 %get ylimits
                 for i=1:size(r,1)
-                    ybounds (i,:) = max(max(unit.(cond{i}).rate_pst(:,:)));
+                    ybounds(i,:) = max(max(unit.(cond{i}).rate_pst(:,:)));
                 end
                 ybounds = ceil(max(abs(ybounds)));
                 
@@ -222,8 +222,8 @@ switch exp_name
                     axes('Position',pos_psth(l,:)); hold on
                     for i=1:size(r,1)
                         plot(t,unit.(cond{i}).rate_pst(l,:),'Color',i==[1 2 3], 'linewidth',2)
-                        set(gca,'xlim',[-0.1 3],'XTick',[0 0.1 0.5 2.5 2.9]-0.1,...
-                            'XTickLabel',[0 0.1 0.5 2.5 2.9],'ylim', [0 ybounds],'YTick',[0 ybounds/2 ybounds], 'TickDir','Out','Fontsize',18);
+                        set(gca,'xlim',[-0.1 3],'XTick',[0 0.5 2.5 2.9]-0.1,...
+                            'XTickLabel',[0 0.5 2.5 2.9],'ylim', [0 ybounds],'YTick',[0 ybounds/2 ybounds], 'TickDir','Out','Fontsize',18);
 %                         set(gca,'xlim',[-0.1 3],'XTick',[0 0.1 0.5 2.5 2.9]-0.1,...
 %                             'XTickLabel',[0 0.1 0.5 2.5 2.9],'ylim', [0 52],'YTick',[0 26 52], 'TickDir','Out','Fontsize',18);
                         if l == 3
@@ -249,6 +249,7 @@ switch exp_name
                 set(gca,'xlim',[min(s)-unique(diff(s)) max(s)+unique(diff(s))],'XTick',s,...
                     'TickDir','Out','Fontsize',16);
                 title(['m' num2str(monk_id) 's' num2str(session_id) 'ch' num2str(channel_no) '\_u' num2str(unit_num)]);
+                
         end
     case 'HD'
         switch plottype

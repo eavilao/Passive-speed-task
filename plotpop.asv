@@ -289,36 +289,41 @@ switch plottype
         %             %             axis([0 1 0 1]);
         %         end
         
-        
+        % all neurons
         for i=1:length(cond)
-            % all neurons
             d = pop.(cond{i}).(pop_type).discindx; med_d(i) = nanmedian(d);
             d_modality(i,:)=pop.(cond{i}).(pop_type).discindx;
             y(i,:) = hist(d,dcntr);
-            %tuned
-            d_tuned = pop.(cond{i}).tuned.discindx; med_d_tuned(i) = nanmedian(d_tuned);
-            d_modality_tuned(i,:)=pop.(cond{i}).(pop_type).discindx;
-            y_tuned(i,:) = hist(d_tuned,dcntr);
-            
             %             z0(i,:) = ecdfhist(ecdf(d0),dcntr); z(i,:) = ecdfhist(ecdf(d),dcntr);
             %             hold on;
             %             [F,X] = ecdf(d0); plot(X,F,'Color',0.65*([1 2 3]==i),'Linewidth',2);
             %             [F,X] = ecdf(d); plot(X,F,'Color',([1 2 3]==i),'Linewidth',2);
             %             axis([0 1 0 1]);
-            
+
         end
-       
+        % tuned neurons
+            for i=1:length(cond)
+            d_tuned = pop.(cond{i}).(pop_type).discindx; med_d(i) = nanmedian(d);
+            d_modality_tuned(i,:)=pop.(cond{i}).(pop_type).discindx;
+            y(i,:) = hist(d,dcntr);
+            %             z0(i,:) = ecdfhist(ecdf(d0),dcntr); z(i,:) = ecdfhist(ecdf(d),dcntr);
+            %             hold on;
+            %             [F,X] = ecdf(d0); plot(X,F,'Color',0.65*([1 2 3]==i),'Linewidth',2);
+            %             [F,X] = ecdf(d); plot(X,F,'Color',([1 2 3]==i),'Linewidth',2);
+            %             axis([0 1 0 1]);
+
+        end
+        
         
         
         % plot
         for i=1:length(cond)
             figure; hold on;
-            plot(dcntr,y(i,:),'k','Linewidth',2); %all
-            plot(dcntr,y_tuned(i,:),'k','Linewidth',2); %tuned
-            ha = area(dcntr,y_tuned(i,:),'FaceColor',[1 2 3]==i,'Linewidth',2);
+            plot(dcntr,y(i,:),'k','Linewidth',2);
+            ha = area(dcntr,y(i,:),'FaceColor',[1 2 3]==i,'Linewidth',2);
             set(get(ha,'Children'),'FaceAlpha',0.5,'EdgeColor','none');
             set(gca,'xlim',[0 1],'XTick',[0 0.5 1],'XTickLabel',[0 0.5 1],'TickDir','Out','Fontsize',16);
-            vline(med_d(i),'--k'); vline(med_d_tuned(i),'--c');
+            vline(med_d(i),'--r');
             title([num2str(cond{i}) ' : ' num2str(pop.groupname) ' ' num2str(pop_type) ...
                 ' ' num2str(pop.unitname)]);
              ylabel('No. of neurons'); xlabel('DDI');
