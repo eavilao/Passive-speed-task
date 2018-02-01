@@ -125,22 +125,23 @@ switch unitname
         results.tuned_exc.rate_pst.time = thisdata(1).time(1:min(ntime));
         results.tuned_sup.rate_pst.time = thisdata(1).time(1:min(ntime));
         
-        % PCA of psth
-        tindx = thisdata(1).time>prs.tstim_on & thisdata(1).time<prs.tstim_off+0.4;
-        X=squeeze(mean(rate_pst(:,:,tindx),2));
-        [Y1,~,Y3]=pca(X); results.all.pca_pst = Y1; results.all.pca_var = Y3;
-        X=squeeze(mean(rate_pst(tuned,:,tindx),2));
-        [Y1,~,Y3]=pca(X); results.tuned.pca_pst = Y1; results.tuned.pca_var = Y3;
-        X=squeeze(mean(rate_pst(untuned,:,tindx),2));
-        [Y1,~,Y3]=pca(X); results.untuned.pca_pst = Y1; results.untuned.pca_var = Y3;
-        X=squeeze(mean(rate_pst(resp,:,tindx),2));
-        [Y1,~,Y3]=pca(X); results.resp.pca_pst = Y1; results.resp.pca_var = Y3;
-        X=squeeze(mean(rate_pst(unresp,:,tindx),2));
-        [Y1,~,Y3]=pca(X); results.unresp.pca_pst = Y1; results.unresp.pca_var = Y3;
-        X=squeeze(mean(rate_pst(exc,:,tindx),2));
-        [Y1,~,Y3]=pca(X); results.exc.pca_pst = Y1; results.exc.pca_var = Y3;
-        X=squeeze(mean(rate_pst(sup,:,tindx),2));
-        [Y1,~,Y3]=pca(X); results.sup.pca_pst = Y1; results.sup.pca_var = Y3;
+%         % PCA of psth
+%         tindx = thisdata(1).time>prs.tstim_on &
+%         thisdata(1).time<prs.tstim_off+0.4; 
+%         X=squeeze(mean(rate_pst(:,:,tindx),2));
+%         [Y1,~,Y3]=pca(X); results.all.pca_pst = Y1; results.all.pca_var = Y3;
+%         X=squeeze(mean(rate_pst(tuned,:,tindx),2));
+%         [Y1,~,Y3]=pca(X); results.tuned.pca_pst = Y1; results.tuned.pca_var = Y3;
+%         X=squeeze(mean(rate_pst(untuned,:,tindx),2));
+%         [Y1,~,Y3]=pca(X); results.untuned.pca_pst = Y1; results.untuned.pca_var = Y3;
+%         X=squeeze(mean(rate_pst(resp,:,tindx),2));
+%         [Y1,~,Y3]=pca(X); results.resp.pca_pst = Y1; results.resp.pca_var = Y3;
+%         X=squeeze(mean(rate_pst(unresp,:,tindx),2));
+%         [Y1,~,Y3]=pca(X); results.unresp.pca_pst = Y1; results.unresp.pca_var = Y3;
+%         X=squeeze(mean(rate_pst(exc,:,tindx),2));
+%         [Y1,~,Y3]=pca(X); results.exc.pca_pst = Y1; results.exc.pca_var = Y3;
+%         X=squeeze(mean(rate_pst(sup,:,tindx),2));
+%         [Y1,~,Y3]=pca(X); results.sup.pca_pst = Y1; results.sup.pca_var = Y3;
         
         % population average tuning curves
         for i=1:nunits

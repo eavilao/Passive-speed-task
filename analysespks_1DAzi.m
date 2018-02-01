@@ -24,8 +24,8 @@ switch modality
         spks = data.spks(data.stim.modality == 3);
 end
 
-%% trial-averaged responses
-results.time = data.stim.time;
+%% trial-averaged responses 
+results.time = data.stim.time; 
 results.tstim = mean(data.stim.tstim) - (prs.nspk(1)-prs.nspk(2));
 all_speeds = unique(speeds);
 for i=1:length(all_speeds)
@@ -33,7 +33,7 @@ for i=1:length(all_speeds)
     spk = spks(speeds == all_speeds(i)); ntrls = length(spk);
     results.rate_pst(i,:) = hist(cell2mat({spk.tspk}'),data.stim.time)/(ntrls*prs.dt);
     results.rate_pst(i,:) = smooth_pst(results.rate_pst(i,:),prs.dt,prs.tsmooth);
-    results.rate_avg(i).mu = mean([spk.nspk]/results.tstim);
+    results.rate_avg(i).mu = mean([spk.nspk]/results.tstim);  %should be computed on middle 1s
     results.rate_avg(i).sig = std([spk.nspk]/results.tstim)/sqrt(ntrls);
 end
 
@@ -43,7 +43,7 @@ if ~strcmp(modality,'null')
     r_0 = mean(nspk_0)/results.tstim;
     sse_0 = sum(((nspk_0 - mean(nspk_0))/results.tstim).^2);
     alpha = prs.alpha; %1-(1-prs.alpha)^(1/length(all_speeds));
-    for i=1:length(all_speeds)
+    for i=1:length(all_speeds) % not speeds but headings
         spk = spks(speeds == all_speeds(i)); ntrls = length(spk);
         nspk(i,:) = [spk.nspk]; 
         tspk = {spk.tspk}; t_prestim = prs.tbeg_acc - prs.tstim_on;
@@ -65,7 +65,7 @@ if ~strcmp(modality,'null')
     results.stats.pvals.exc_mid = min(pval_exc); results.stats.flags.exc_mid = (results.stats.pvals.exc_mid <= alpha);
     % suppressive-ness in the middle of the trial
     results.stats.pvals.sup_mid = min(pval_sup); results.stats.flags.sup_mid = (results.stats.pvals.sup_mid <= alpha);
-    % stimulus tuning
+    % stimulus tuning 
     results.stats.pvals.tuning = anova1([nspk_0 ; nspk]',[],'off'); results.stats.flags.tuning = (results.stats.pvals.tuning <= prs.alpha);
     % preferred stimulus
     [~,ind_pref]=max([results.rate_avg.mu]);

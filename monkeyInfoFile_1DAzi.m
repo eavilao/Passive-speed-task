@@ -1067,5 +1067,28 @@ monkeyInfo (end).coord.depth = 0000;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:24;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
 
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+
+monkeyInfo (end+1).monk_id = 44;    % Monkey # 
+monkeyInfo (end).session_id = 757;   % Session #
+monkeyInfo (end).run = 1;        % Run #
+monkeyInfo (end).coord.row = 0000;       % Row (grid)
+monkeyInfo (end).coord.column = 0000;    % Column (grid)
+monkeyInfo (end).coord.depth = 0000;   % Depth below gray matter (in microns)
+monkeyInfo (end).channels = 1:24;    % Channel #? (all channels=0)
+monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
+
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+
+monkeyInfo (end+1).monk_id = 44;    % Monkey # 
+monkeyInfo (end).session_id = 767;   % Session #
+monkeyInfo (end).run = 1;        % Run #
+monkeyInfo (end).coord.row = 0000;       % Row (grid)
+monkeyInfo (end).coord.column = 0000;    % Column (grid)
+monkeyInfo (end).coord.depth = 0000;   % Depth below gray matter (in microns)
+monkeyInfo (end).channels = 1:24;    % Channel #? (all channels=0)
+monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
 
 
