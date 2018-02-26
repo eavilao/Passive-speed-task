@@ -149,7 +149,7 @@ classdef experiment < handle
                         these_lfps = this.lfps(end - count_lfps + 1:end);
                         if ~isempty(these_lfps)
                             this.sessions(end).analyse_lfps(this.name,these_lfps);
-                        end   
+                        end
                         n_lfps = length(this.lfps);
                         for ind=n_lfps - count_lfps + 1:n_lfps
                             this.lfps(ind).destroy_wave;

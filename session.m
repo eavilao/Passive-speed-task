@@ -102,11 +102,18 @@ classdef session < handle
                     this.multiunits.vis = analysecorr(stim,nspk,'vis');
                     this.multiunits.vis.fisherinfo = analyseinfo(stim,nspk,'vis');
                 case '1DAzi'
-                    this.multiunits.ves = analysecorr(stim,nspk,'ves');
+                    this.multiunits.ves = analysecorr_1DAzi(stim,nspk,'ves');
                     this.multiunits.ves.fisherinfo = analyseinfo(stim,nspk,'ves');
-                    this.multiunits.vis = analysecorr(stim,nspk,'vis');
+                    this.multiunits.vis = analysecorr_1DAzi(stim,nspk,'vis');
                     this.multiunits.vis.fisherinfo = analyseinfo(stim,nspk,'vis');
-                    this.multiunits.com = analysecorr(stim,nspk,'com');
+                    this.multiunits.com = analysecorr_1DAzi(stim,nspk,'com');
+                    this.multiunits.com.fisherinfo = analyseinfo(stim,nspk,'com');
+                case 'HD'
+                    this.multiunits.ves = analysecorr_HD(stim,nspk,'ves');
+                    this.multiunits.ves.fisherinfo = analyseinfo(stim,nspk,'ves');
+                    this.multiunits.vis = analysecorr_HD(stim,nspk,'vis');
+                    this.multiunits.vis.fisherinfo = analyseinfo(stim,nspk,'vis');
+                    this.multiunits.com = analysecorr_HD(stim,nspk,'com');
                     this.multiunits.com.fisherinfo = analyseinfo(stim,nspk,'com');
             end
         end
@@ -271,7 +278,7 @@ classdef session < handle
                             [this.singleunits.clustering_shuffled.vis.r_sig(i),this.singleunits.clustering_shuffled.vis.p_sig(i),...
                                 this.singleunits.clustering_shuffled.vis.r_noise(i),this.singleunits.clustering_shuffled.vis.p_noise(i)] = ...
                                 signoisecorr(stim,nspk1(:),nspk_rand(:),'vis');
-                             case '1DAzi'
+                        case '1DAzi'
                             [this.singleunits.clustering.ves.r_sig(i),this.singleunits.clustering.ves.p_sig(i),...
                                 this.singleunits.clustering.ves.r_noise(i),this.singleunits.clustering.ves.p_noise(i)] = ...
                                 signoisecorr(stim,nspk1(:),nspk2(:),'ves');
@@ -348,19 +355,26 @@ classdef session < handle
                         wave_vis(i,:) = reshape([lfps(i).wave(lfps(i).stim.modality==2).v],...
                             [numel([lfps(i).wave(lfps(i).stim.modality==2).v]),1]);
                     case 'HD'
-                        wave_null(i,:) = reshape([lfps(i).wave(lfps(i).stim.modality==-1).v],...
-                            [numel([lfps(i).wave(lfps(i).stim.modality==-1).v]),1]);
                         wave_ves(i,:) = reshape([lfps(i).wave(lfps(i).stim.modality==1).v],...
                             [numel([lfps(i).wave(lfps(i).stim.modality==1).v]),1]);
                         wave_vis(i,:) = reshape([lfps(i).wave(lfps(i).stim.modality==2).v],...
                             [numel([lfps(i).wave(lfps(i).stim.modality==2).v]),1]);
                 end
             end
-            this.lfps.corr_spatial.r = corr(wave');
-            this.lfps.corr_spatial.null.r = corr(wave_null');
-            this.lfps.corr_spatial.ves.r = corr(wave_ves');
-            this.lfps.corr_spatial.vis.r = corr(wave_vis');
-            this.lfps.corr_spatial.x = 1:length(lfps);
+            
+            if strcmp(exp_name,'HD')
+                this.lfps.corr_spatial.r = corr(wave');
+                this.lfps.corr_spatial.ves.r = corr(wave_ves');
+                this.lfps.corr_spatial.vis.r = corr(wave_vis');
+                this.lfps.corr_spatial.x = 1:length(lfps);
+            else
+                this.lfps.corr_spatial.r = corr(wave');
+                this.lfps.corr_spatial.null.r = corr(wave_null');
+                this.lfps.corr_spatial.ves.r = corr(wave_ves');
+                this.lfps.corr_spatial.vis.r = corr(wave_vis');
+                this.lfps.corr_spatial.x = 1:length(lfps);
+            end
+            
             for i=1:length(lfps)
                 for j=1:length(lfps)
                     wave1 = wave(i,:);
@@ -369,9 +383,9 @@ classdef session < handle
                 end
             end
             this.lfps.corr_spatiotemporal.x = 1:length(lfps);
-            this.lfps.corr_distance = corr_ch2dist(this.lfps.corr_spatial,0.1);
+            this.lfps.corr_distance = corr_ch2dist(this.lfps.corr_spatial,0.1,exp_name);
             this.lfps.corr_spatiotemporal.t = linspace(-1,1,2*round(1/dt)+1);
-            clear wave_ves wave_vis;
+            clear wave_ves wa  ve_vis;
             switch exp_name
                 case 'linearspeed'
                     for i=1:length(lfps)
@@ -394,7 +408,7 @@ classdef session < handle
                     this.lfps.ves = mean(wave_ves);
                     this.csd.vis = computecsd(wave_vis,this.lfps.time,0.1); %dx = 0.1 mm
                     this.lfps.vis = mean(wave_vis);
-                     case '1DAzi'
+                case '1DAzi'
                     for i=1:length(lfps)
                         wave_ves(i,:) = mean(lfps(i).ves.wave_pst);
                         wave_vis(i,:) = mean(lfps(i).vis.wave_pst);
@@ -406,7 +420,7 @@ classdef session < handle
                     this.lfps.vis = mean(wave_vis);
                     this.csd.com = computecsd(wave_com,this.lfps.time,0.1); %dx = 0.1 mm
                     this.lfps.com = mean(wave_com);
-                     case 'HD'
+                case 'HD'
                     for i=1:length(lfps)
                         wave_ves(i,:) = mean(lfps(i).ves.wave_pst);
                         wave_vis(i,:) = mean(lfps(i).vis.wave_pst);

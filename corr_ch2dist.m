@@ -1,19 +1,42 @@
-function corr2 = corr_ch2dist(corr,interchdist)
+function corr2 = corr_ch2dist(corr,interchdist,exp_name)
 
 x = corr.x;
-if isfield(corr,'r_nspk')
-    r_nspk = corr.r_nspk;
-    r_tspk = corr.r_tspk;
-    rves_sig = corr.ves.r_sig;
-    rvis_sig = corr.vis.r_sig;
-    rves_noise = corr.ves.r_noise;
-    rvis_noise = corr.vis.r_noise;
+
+if strcmp(exp_name,'HD')
+    
+    if isfield(corr,'r_nspk')
+        r_nspk = corr.r_nspk;
+        r_tspk = corr.r_tspk;
+        rves_sig = corr.ves.r_sig;
+        rvis_sig = corr.vis.r_sig;
+        rves_noise = corr.ves.r_noise;
+        rvis_noise = corr.vis.r_noise;
+    else
+        r = corr.r;
+        r_ves = corr.ves.r;
+        r_vis = corr.vis.r;
+    end
+    
 else
-    r = corr.r;
-    r_null = corr.null.r;
-    r_ves = corr.ves.r;
-    r_vis = corr.vis.r;
+    if isfield(corr,'r_nspk')
+        r_nspk = corr.r_nspk;
+        r_tspk = corr.r_tspk;
+        rves_sig = corr.ves.r_sig;
+        rvis_sig = corr.vis.r_sig;
+        rves_noise = corr.ves.r_noise;
+        rvis_noise = corr.vis.r_noise;
+    else
+        r = corr.r;
+        r_null = corr.null.r;
+        r_ves = corr.ves.r;
+        r_vis = corr.vis.r;
+    end
+    
 end
+
+
+
+
 if ~isfield(corr,'t')
     if isfield(corr,'r_nspk')
         if length(unique(x))==max(x)% multiunit
@@ -43,13 +66,21 @@ if ~isfield(corr,'t')
                 end
             end
         end
-    else% lfp
+    else % lfp
         corr2.dx = (x-x(1))*interchdist;
-        for i=1:length(x)
-            corr2.r_mu(i) = mean(diag(r,i-1));
-            corr2.null.r_mu(i) = mean(diag(r_null,i-1));
-            corr2.ves.r_mu(i) = mean(diag(r_ves,i-1));
-            corr2.vis.r_mu(i) = mean(diag(r_vis,i-1));
+        if strcmp(exp_name,'HD')
+            for i=1:length(x)
+                corr2.r_mu(i) = mean(diag(r,i-1));
+                corr2.ves.r_mu(i) = mean(diag(r_ves,i-1));
+                corr2.vis.r_mu(i) = mean(diag(r_vis,i-1));
+            end
+        else
+            for i=1:length(x)
+                corr2.r_mu(i) = mean(diag(r,i-1));
+                corr2.null.r_mu(i) = mean(diag(r_null,i-1));
+                corr2.ves.r_mu(i) = mean(diag(r_ves,i-1));
+                corr2.vis.r_mu(i) = mean(diag(r_vis,i-1));
+            end
         end
     end
 else

@@ -43,6 +43,7 @@ if any(all_speeds<0)
     dr(:,1) = dr_temp(:,1); dr(:,end+1) = dr_temp(:,end);
     drds1 = dr/unique(diff(all_speeds(all_speeds<0)));
 end
+
 % positive velocities
 dr_temp = diff(mu_nspk(:,all_speeds>0)')';
 ndr = size(dr_temp,2); dr = [];
@@ -52,3 +53,4 @@ end
 dr(:,1) = dr_temp(:,1); dr(:,end+1) = dr_temp(:,end);
 drds2 = dr/unique(diff(all_speeds(all_speeds>0)));
 results.signal.dfds = [drds1 drds2];
+

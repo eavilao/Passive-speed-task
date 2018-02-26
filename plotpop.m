@@ -349,32 +349,63 @@ switch plottype
             case 'linearspeed'
                 units = pop{1};
                 for i=1:length(units)
-                    r_ves(i) = max([units(i).ves.rate_avg.mu]); %- units(i).null.rate_avg.mu;
-                    r_vis(i) = max([units(i).vis.rate_avg.mu]); %- units(i).null.rate_avg.mu;
-                    r_com(i) = max([units(i).com.rate_avg.mu]); %- units(i).null.rate_avg.mu;
+                    r_ves(i) = max(abs([units(i).ves.rate_avg.mu] - units(i).null.rate_avg.mu));
+                    r_vis(i) = max(abs([units(i).vis.rate_avg.mu] - units(i).null.rate_avg.mu));
+                    r_com(i) = max(abs([units(i).com.rate_avg.mu] - units(i).null.rate_avg.mu));
                 end
-                resp_ves = pop{2}.ves.resp.indx;
-                resp_vis = pop{2}.vis.resp.indx;
-                resp_com = pop{2}.com.resp.indx;
+                %indx
+                resp_ves_exc = pop{2}.ves.exc.indx;
+                resp_ves_sup = pop{2}.ves.sup.indx;
+                resp_vis_exc = pop{2}.vis.exc.indx;
+                resp_vis_sup = pop{2}.vis.sup.indx;
+                
+                ves_vis_exc = resp_ves_exc & resp_vis_exc;
+                ves_vis_sup = resp_ves_sup & resp_vis_sup;
+                
+                
+                
                 figure; hold on;
-                scatter(r_ves(resp_ves & resp_vis)./r_com(resp_ves & resp_vis),...
-                    r_vis(resp_ves & resp_vis)./r_com(resp_ves & resp_vis),'ok','filled');
+                scatter(r_com(ves_vis_exc | 0)./r_vis(ves_vis_exc | 0), r_com(ves_vis_exc | 0)./r_ves(ves_vis_exc | 0),'ok','filled');
+                scatter(r_com(ves_vis_sup | 0)./r_vis(ves_vis_sup | 0), r_com(ves_vis_sup | 0)./r_ves(ves_vis_sup | 0),'ok');
                 plot(0.1:10,0.1:10,'--k');
-                set(gca,'XScale','Log'); set(gca,'YScale','Log', 'TickDir', 'out');
-                xlabel('r_{ves}/r_{com}'); ylabel('r_{vis}/r_{com}'); axis ([0.4 3 0.4 3]);
-                [p,h] = ranksum(r_ves(resp_ves & resp_vis)./r_com(resp_ves & resp_vis),r_vis(resp_ves & resp_vis)./r_com(resp_ves & resp_vis));
-                text(2,1,['p = ' num2str(p)]);
+                set(gca,'TickDir', 'out', 'xtick', [0 1 2 3], 'ytick', [0 1 2 3], 'FontSize',18);
+                xlabel('(R_{com} - R_{0})/(R_{vis} - R_{0})'); ylabel('(R_{com} - R_{0})/(R_{ves} - R_{0})'); axis ([0 3 0 3]);
+                axis equal
+                
+                [p,h] = signrank(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup));
+                %text(2,1,['p = ' num2str(p)]);
+                
+                % y axis histogram
+                figure; hold on;
+                hist(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),30);
+                xlim ([0 3])
+                set(gca,'ylim', [0 8], 'TickDir', 'out','ytick', [0 8],'xtick', [0 1 2 3],'XDir', 'reverse','FontSize', 18); xlabel('r_{ves}/r_{com}','FontSize', 18);
+                vline(median(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),'omitnan'));
+                % x axis histogram
+                figure; hold on;
+                hist(r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup),30);
+                xlim ([0 3])
+                set(gca, 'ylim', [0 14],'TickDir', 'out','ytick', [0 14],'xtick', [0 1 2 3],'FontSize', 18); xlabel('r_{vis}/r_{com}','FontSize', 18);
+                vline(median(r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup),'omitnan'));
+                % diagonal histogram
+                figure; hold on;
+                hist(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup) - r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup),linspace(-3,3,25))
+                xlabel('diagonal'); set(gca, 'TickDir', 'out', 'ytick', [0 10],'FontSize', 18); vline(0); xlim ([-2.423 2.423]);
+                vline(median(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup) - r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup),'omitnan'));
+                
+                
+                
             case 'angularspeed'
                 units = pop{1};
-                plot(0.1:100,0.1:100,'--k');
+                plot(0.1:100,0.1:100,'--k'); 
                 set(gca,'XScale','Log'); set(gca,'YScale','Log');
                 xlabel('r_{ves} (spk/s)'); ylabel('r_{vis} (spk/s)'); axis ([0 100 0 100]);
                 for i=1:length(units)
                     r_ves(i) = max([units(i).ves.rate_avg.mu]) - units(i).null.rate_avg.mu;
                     r_vis(i) = max([units(i).vis.rate_avg.mu]) - units(i).null.rate_avg.mu;
                 end
-                resp_ves = pop{2}.ves.resp.indx;
-                resp_vis = pop{2}.vis.resp.indx;
+                resp_ves = pop{2}.ves.exc.indx; %pop{2}.ves.resp.indx;
+                resp_vis = pop{2}.vis.exc.indx; %pop{2}.vis.resp.indx;
                 figure; hold on;
                 scatter(r_ves(resp_ves),r_vis(resp_ves),'or','filled');
                 scatter(r_ves(resp_vis),r_vis(resp_vis),'og','filled');

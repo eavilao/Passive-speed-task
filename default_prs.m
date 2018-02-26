@@ -52,7 +52,6 @@ switch exp_name
         prs.tbeg_dec = 1;
         prs.tstim_off = 1.5;
     case '1DAzi'
-        %prs.InfoFile = 'monkeyInfoFile_1DAzi';
         prs.InfoFile = 'monkeyInfoFile_1DAzi';
         prs.tempo(1).label = 'OUTCOME';
         prs.tempo(1).col = 9;
@@ -81,24 +80,25 @@ switch exp_name
         prs.InfoFile = 'monkeyInfoFile_HD';
         prs.tempo(1).label = 'OUTCOME';
         prs.tempo(1).col = 9;
-        prs.tempo(1).val = '0'; % 0 for successful trial
+        prs.tempo(1).val_corr = '0'; % 0 for successful trial
+        prs.tempo(1).val_err = '5'; % 5 for incorrect trial
         prs.tempo(2).label = 'STIM_TYPE';
         prs.tempo(2).col = 13:15;
-        prs.tempo(3).label = 'STIM_TYPE';
-        prs.tempo(3).col = 11:15;
+        prs.tempo(3).label = 'HEADING';
+        prs.tempo(3).col = 9:13;
         switch monk_id
             case 44
                 prs.tspk = [-0.5 +0.5];
-                prs.nspk = [0.5 -0.5];
+                prs.nspk = [0.25 -0.25]; % 0.25 after stim on / 0.25 before stim ends
             case 45
                 prs.tspk = [-0.5 +0.5];
-                prs.nspk = [0.5 -0.5];
+                prs.nspk = [0.25 -0.25]; % 0.25 after stim on / 0.25 before stim ends
         end
-        prs.filepath = ['Z:\Users\Eric_Avila\HD_1DAzi_paper\HD\'];
+        prs.filepath = ['Z:\Users\Eric_Avila\HD_1DAzi_paper\HD\HD_Raw_Data\'];
         prs.tstim_on = 0;
-        prs.tbeg_acc = 0.4;
+        prs.tbeg_acc = 0.1;
         prs.tbeg_dec = 1;
-        prs.tstim_off = 1.5;
+        prs.tstim_off = 1;
 end
 prs.dt = 0.01; % temporal resolution (seconds)
 prs.tsmooth = 0.1; %0.05; %0.025; % width of gaussian (seconds)for speed protocols %0.1 for 1DAzi;  

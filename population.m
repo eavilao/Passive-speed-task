@@ -39,12 +39,9 @@ classdef population < handle
                         this.all = analysesession(data);
                     end
                 case 'HD'
-                    this.ves = analysepopulation(data,unitname,'ves',prs);
-                    this.vis = analysepopulation(data,unitname,'vis',prs);
-                    this.com = analysepopulation(data,unitname,'com',prs);
-                    if length(data)==2
-                        this.all = analysesession(data);
-                    end
+                    this.ves = analysepopulation_HD(data,unitname,'ves',prs);
+                    this.vis = analysepopulation_HD(data,unitname,'vis',prs);
+                    this.com = analysepopulation_HD(data,unitname,'com',prs);
             end
         end
     end

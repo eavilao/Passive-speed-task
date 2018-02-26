@@ -1,4 +1,4 @@
-function results = analysecorr(stim,nspk,modality)
+function results = analysecorr_HD(stim,nspk,modality)
 
 speeds = stim.speed;
 modalities = stim.modality;
@@ -32,25 +32,25 @@ end
 [results.noise.r,results.noise.p]=corr(z_nspk');
 
 %% slopes
-drds1 = [];
-if any(all_speeds<0)
-    % negative velocities
-    dr_temp = diff(mu_nspk(:,all_speeds<0)')';
-    ndr = size(dr_temp,2); dr = [];
-    for i=2:ndr
-        dr(:,i) = (dr_temp(:,i-1)+dr_temp(:,i))/2;
-    end
-    dr(:,1) = dr_temp(:,1); dr(:,end+1) = dr_temp(:,end);
-    drds1 = dr/unique(diff(all_speeds(all_speeds<0)));
-end
-% positive velocities
-dr_temp = diff(mu_nspk(:,all_speeds>0)')';
-ndr = size(dr_temp,2); dr = [];
-for i=2:ndr
-    dr(:,i) = (dr_temp(:,i-1)+dr_temp(:,i))/2;
-end
-dr(:,1) = dr_temp(:,1); dr(:,end+1) = dr_temp(:,end);
-drds2 = dr/unique(diff(all_speeds(all_speeds>0)));
-results.signal.slope_vs_stim = [drds1 drds2];
+% drds1 = [];
+% if any(all_speeds<0)
+%     % negative velocities
+%     dr_temp = diff(mu_nspk(:,all_speeds<0)')';
+%     ndr = size(dr_temp,2); dr = [];
+%     for i=2:ndr
+%         dr(:,i) = (dr_temp(:,i-1)+dr_temp(:,i))/2;
+%     end
+%     dr(:,1) = dr_temp(:,1); dr(:,end+1) = dr_temp(:,end);
+%     drds1 = dr/unique(diff(all_speeds));
+% end
+% 
+% % positive velocities
+% dr_temp = diff(mu_nspk(:,all_speeds>0)')';
+% ndr = size(dr_temp,2); dr = [];
+% for i=2:ndr
+%     dr(:,i) = (dr_temp(:,i-1)+dr_temp(:,i))/2;
+% end
+% dr(:,1) = dr_temp(:,1); dr(:,end+1) = dr_temp(:,end);
+% drds2 = dr/unique(diff(all_speeds));
+% results.signal.dfds = [drds1 drds2];
 
-results.fisherinfo = analyseinfo(results.signal.slope_vs_stim,nspk);

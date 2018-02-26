@@ -56,10 +56,9 @@ classdef singleunit < handle
                     this.vis = analysespks_1DAzi(this,'vis',prs);
                     this.com = analysespks_1DAzi(this,'com',prs);
                 case 'HD'
-                    this.null = analysespks(this,'null',prs);
-                    this.ves = analysespks(this,'ves',prs);
-                    this.vis = analysespks(this,'vis',prs);
-                    this.com = analysespks(this,'com',prs);
+                    this.ves = analysespks_HD(this,'ves',prs);
+                    this.vis = analysespks_HD(this,'vis',prs);
+                    this.com = analysespks_HD(this,'com',prs);
             end
         end
         %% destroy spike times

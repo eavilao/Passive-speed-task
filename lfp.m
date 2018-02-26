@@ -52,7 +52,6 @@ classdef lfp < handle
                     this.vis = analyselfps(this,'vis',prs);
                     this.com = analyselfps(this,'com',prs);
                 case 'HD'
-                    this.null = analyselfps(this,'null',prs);
                     this.ves = analyselfps(this,'ves',prs);
                     this.vis = analyselfps(this,'vis',prs);
                     this.com = analyselfps(this,'com',prs);
