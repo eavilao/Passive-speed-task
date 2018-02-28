@@ -29,6 +29,7 @@ for i=1:length(all_speeds)
     spk_corr = spks(speeds == all_speeds(i) & correctTrials);
     spk_err = spks(speeds == all_speeds(i) & incorrectTrials);
     
+    results.nspk{i,:}=[spk.nspk];
     results.rate_pst(i,:) = hist(cell2mat({spk.tspk}'),data.stim.time)/(ntrls*prs.dt);
     results.rate_pst(i,:) = smooth_pst(results.rate_pst(i,:),prs.dt,prs.tsmooth);
     results.rate_avg(i).mu = mean([spk.nspk]/results.tstim); 

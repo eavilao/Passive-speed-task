@@ -421,6 +421,7 @@ classdef session < handle
                     this.csd.com = computecsd(wave_com,this.lfps.time,0.1); %dx = 0.1 mm
                     this.lfps.com = mean(wave_com);
                 case 'HD'
+                    clear wave_ves wave_vis wave_com
                     for i=1:length(lfps)
                         wave_ves(i,:) = mean(lfps(i).ves.wave_pst);
                         wave_vis(i,:) = mean(lfps(i).vis.wave_pst);

@@ -112,7 +112,7 @@ classdef experiment < handle
                             
                             %                             % add lfp
                             count_lfps = count_lfps + 1;
-                            fprintf(['\n ... reading AD channel ' num2str(k) '... ']);
+                            fprintf(['\n  ... reading AD channel ' num2str(k) '... ']);
                             this_lfp = getlfp([prs.filepath f_plx],k);
                             fprintf(['... adding lfp ' num2str(length(this.lfps)+1) '\n']);
                             this.lfps(end+1) = lfp(this_monk_id,this_session_id,k,maxchannels,this_coord);
@@ -135,11 +135,6 @@ classdef experiment < handle
 %                             this.sessions(end).analyse_clustering(this.name,these_singleunits,these_multiunits)
 %                         end
                         % destroy spikes
-                        n_multiunits = length(this.multiunits);
-                        for ind=n_multiunits - count_multiunits + 1:n_multiunits
-                            this.multiunits(ind).destroy_spks;
-                            this.multiunits(ind).destroy_stim;
-                        end
                         n_singleunits = length(this.singleunits);
                         for ind=n_singleunits - count_singleunits + 1:n_singleunits
                             this.singleunits(ind).destroy_spks;
@@ -155,7 +150,7 @@ classdef experiment < handle
                             this.lfps(ind).destroy_wave;
                             this.lfps(ind).destroy_stim;
                         end
-                    catch ME
+                        catch ME
                         fprintf(['Monkey ' num2str(this_monk_id) ' ; Session ' num2str(this_session_id) ' : SESSION FAILED BECAUSE %s\n'],ME.message);
                         continue;
                     end
