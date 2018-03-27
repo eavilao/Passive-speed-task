@@ -86,7 +86,7 @@ for i=1:sum(exc_indx)
         break;
     end
 end
-sup_indx = (nspk_mu(t>tbeg_acc & t<=prs.tbeg_dec) < nspk0.mu - 2*nspk0.sig);
+sup_indx = (nspk_mu(t>tbeg_acc & t<=prs.tbeg_dec) < nspk0.mu - 2*nspk0.sig);  
 for i=1:sum(sup_indx)
     indx = find(sup_indx,i); indx = indx(end);
     if indx<=(length(sup_indx)-10) && all(sup_indx(indx:indx+0.1/dt))

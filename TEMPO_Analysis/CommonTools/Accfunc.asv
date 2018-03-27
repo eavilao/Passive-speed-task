@@ -1,0 +1,16 @@
+function z = Accfunc(x, q)
+%	  y = q(1) + q(2) * exp(-0.5*((x - q(3))/q(4)).^2 )
+%
+%	thus q(1) is base rate, q(2) is amplitude, q(3) is center, and q(4) is size
+
+t=0:0.05:2.05;
+ampl=0.13;
+num_sigs=6;
+Sigma=3*sqrt(2)/(4*num_sigs);
+z=-1*ampl/(Sigma^2)*(1/(Sigma*sqrt(2*pi)))*exp(-0.5*((t - 1)/ Sigma).^2).*(t-1);
+z=q(1)+q(2)*exp(-0.5*((x - q(3))/ q(4)).^2).*(x-q(3));
+
+
+z = q(1) + q(2) * exp(-0.5*((x - q(3))/ q(4)).^2);
+
+return;

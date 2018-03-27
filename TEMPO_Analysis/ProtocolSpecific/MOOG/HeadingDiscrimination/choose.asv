@@ -1,0 +1,3 @@
+function result  = choose(FileName)
+if strcmp(FileName, 'm24c6r1.htb') == 1 ||  strcmp(FileName, 'm24c24r1.htb') == 1  ||  strcmp(FileName, 'm24c3r1.htb') == 1 ||  strcmp(FileName, 'm24c12r1.htb') == 1 
+        ... ||  strcmp(FileName, 'm24c3r1.htb') == 1 

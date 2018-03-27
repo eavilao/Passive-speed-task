@@ -1,0 +1,23 @@
+function [vel Acc]=CalVel(dur, sig, mag, windows)
+
+
+vel = GenGaussian(dur, sig);
+dist = cumtrapz(vel)/61;
+for i = 1 : length(mag)
+    dist = dist/max(dist)*mag(i);
+    vel = diff(dist)*61;    
+    accel= diff(vel)*61;   
+end
+velmax = abs(max(vel)) ;       %%
+maxAcc1s = abs(max(accel))*100;%% cm/s/s
+
+midpt =  floor(length(vel)/2)+1;
+window = floor(length(vel)*windows/dur)
+vel = mean( vel(midpt -  floor(window/2) : midpt + floor(window/2) )  )
+
+function [data] = GenGaussian(dur, sig)
+t0 = dur/2;
+t = 0:1/61:dur;
+
+% Generate the Gaussian.
+data = exp(-sqrt(2)* ((t-t0) / (dur/sig)).^2);
