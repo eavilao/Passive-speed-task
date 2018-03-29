@@ -23,9 +23,10 @@ else % lfp
 end
 
 tbeg_acc = prs.tbeg_acc; exc=0; sup=0; 
+win_after_motion = prs.win_after_motion;
 events.rise.t_on = NaN; events.rise.type_on = 'nan';
 %on transient
-indx_beg = find(t>tbeg_acc,1); indx_end = find(t>tbeg_acc+.25,1);
+indx_beg = find(t>tbeg_acc,1); indx_end = find(t>tbeg_acc+win_after_motion,1);
 winsize_current = twin_current/dt;
 winsize_previous = twin_previous/dt;
 for indx = indx_beg:indx_end
@@ -51,7 +52,7 @@ end
 tbeg_dec = prs.tbeg_dec; exc=0; sup=0; 
 events.rise.t_off = NaN; events.rise.type_off = 'nan';
 %off transient
-indx_beg = find(t>tbeg_dec,1); indx_end = find(t>tbeg_dec+.25,1);
+indx_beg = find(t>tbeg_dec,1); indx_end = find(t>tbeg_dec+win_after_motion,1);
 for indx = indx_beg:indx_end
     r_mu = mean(nspk_mu(round(indx-winsize_current/2):round(indx+winsize_current/2)));
     r_thresh1 = mean(nspk_mu(round(indx-winsize_previous):round(indx-winsize_current/2))) + ...

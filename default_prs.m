@@ -110,3 +110,4 @@ prs.spkwf_fs = 40000; % sampling rate of spike waveform
 prs.twin = 0.1;  
 prs.twin_current = prs.twin/2;
 prs.twin_previous = prs.tbeg_acc - prs.twin/2;
+prs.win_after_motion = 0.25;
