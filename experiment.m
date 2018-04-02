@@ -114,7 +114,7 @@ classdef experiment < handle
                                 this.singleunits(end).analyse_spks(this.name,prs);
                             end
                             
-                            %                             % add lfp
+                            % add lfp
                             count_lfps = count_lfps + 1;
                             fprintf(['\n  ... reading AD channel ' num2str(k) '... ']);
                             this_lfp = getlfp([prs.filepath f_plx],k);
@@ -127,17 +127,17 @@ classdef experiment < handle
                         end
                         fprintf(['***** adding session ' num2str(length(this.sessions)+1) ' *****\n']);
                         this.sessions(end+1) = session(this_monk_id,this_session_id,this_coord);
-%                         % multiunits
-%                         these_multiunits = this.multiunits(end - count_multiunits + 1:end);
-%                         if ~isempty(these_multiunits)
-%                             this.sessions(end).analyse_multiunits(this.name,these_multiunits);
-%                         end
-%                         % singleunits
-%                         these_singleunits = this.singleunits(end - count_singleunits + 1:end);
-%                         if ~isempty(these_singleunits)
-%                             this.sessions(end).analyse_singleunits(this.name,these_singleunits);
-%                             this.sessions(end).analyse_clustering(this.name,these_singleunits,these_multiunits)
-%                         end
+                        % multiunits
+                        these_multiunits = this.multiunits(end - count_multiunits + 1:end);
+                        if ~isempty(these_multiunits)
+                            this.sessions(end).analyse_multiunits(this.name,these_multiunits);
+                        end
+                        % singleunits
+                        these_singleunits = this.singleunits(end - count_singleunits + 1:end);
+                        if ~isempty(these_singleunits)
+                            this.sessions(end).analyse_singleunits(this.name,these_singleunits);
+                            this.sessions(end).analyse_clustering(this.name,these_singleunits,these_multiunits)
+                        end
                         % destroy spikes
                         n_singleunits = length(this.singleunits);
                         for ind=n_singleunits - count_singleunits + 1:n_singleunits
