@@ -33,21 +33,31 @@ end
 
 % over time
 for cellNum = 1:length(units)
-[reg_coeff_pst(:,cellNum),conf_int_pst(:,:,cellNum)] = regress(speed_pst_com(:,cellNum),speed_pst(:,:,cellNum),0.32);
+[reg_coeff_pst(:,cellNum),conf_int_pst(:,:,cellNum)] = regress(speed_pst_com(:,cellNum),speed_pst(:,:,cellNum));
 end
 
 % over avg
 for cellNum = 1:length(units)
-[reg_coeff_avg(:,cellNum),conf_int_avg(:,:,cellNum)] = regress(speed_mu_com(:,cellNum),speed_mu(:,:,cellNum),0.32);
+[reg_coeff_avg(:,cellNum),conf_int_avg(:,:,cellNum)] = regress(speed_mu_com(:,cellNum),speed_mu(:,:,cellNum));
 end
 
 % plot
 figure; hold on;
+% plot with 95% confidence intervals
+% for cellNum = 1:length(units)
+%     plot(reg_coeff_pst(1,cellNum),reg_coeff_pst(2,cellNum), '.r', 'MarkerSize', 25)
+%     errorbar(reg_coeff_pst(1,cellNum),reg_coeff_pst(2,cellNum),...
+%         conf_int_pst(1,1,cellNum),conf_int_pst(1,2,cellNum),...
+%         conf_int_pst(2,1,cellNum),conf_int_pst(2,2,cellNum), 'k')
+% end
+
+% plot with error bars upper & lower bound 95% CI
 for cellNum = 1:length(units)
-    plot(reg_coeff_pst(1,cellNum),reg_coeff_pst(2,cellNum), '.r', 'MarkerSize', 25)
-    errorbar(reg_coeff_pst(1,cellNum),reg_coeff_pst(2,cellNum),...
+    plot(reg_coeff_pst(1,cellNum),reg_coeff_pst(2,cellNum), '.c', 'MarkerSize', 18)
+    h = errorbar(reg_coeff_pst(1,cellNum),reg_coeff_pst(2,cellNum),...
         reg_coeff_pst(1,cellNum)-conf_int_pst(1,1,cellNum),reg_coeff_pst(1,cellNum)-conf_int_pst(1,2,cellNum),...
-        reg_coeff_pst(2,cellNum)-conf_int_pst(2,1,cellNum),reg_coeff_pst(2,cellNum)-conf_int_pst(2,2,cellNum), 'k')
+        reg_coeff_pst(2,cellNum)-conf_int_pst(2,1,cellNum),reg_coeff_pst(2,cellNum)-conf_int_pst(2,2,cellNum), 'k');
+    h.CapSize = 0;
 end
 plot(0:3,0:3, '-r'); axis([-1.5 1.5 -1.5 1.5])
 set(gca, 'TickDir','out'); vline(0);hline(0)
