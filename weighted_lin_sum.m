@@ -60,5 +60,6 @@ for cellNum = 1:length(units)
     h.CapSize = 0;
 end
 plot(0:3,0:3, '-r'); axis([-1.5 1.5 -1.5 1.5])
-set(gca, 'TickDir','out'); vline(0);hline(0)
+set(gca, 'TickDir','out', 'FontSize', 18); vline(0);hline(0)
+xlabel('vestibular weight'); ylabel('visual weight');
 box off

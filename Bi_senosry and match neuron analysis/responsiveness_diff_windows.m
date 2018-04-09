@@ -61,7 +61,7 @@ title('Suppresive'); xlabel('window size (ms)'); ylabel('fraction of neurons')
 map = [1 1 1
     0 0 0];
 
-nunits = length(fifty.experiments(1).singleunits); 
+nunits = length(fifty.experiments(1).singleunits);  
 % exc
 for i=1:length(id_exc(1,1,:))
     figure; hold on;
@@ -91,7 +91,6 @@ for i=1:length(id_exc(1,1,:))
     end
 end
 
-z=1; 
 % plot 
 figure; hold on; 
 for i=1:length(cond)
