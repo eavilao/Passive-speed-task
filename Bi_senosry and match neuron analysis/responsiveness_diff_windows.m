@@ -26,12 +26,12 @@ end
 %identity
 for i=1:length(cond)
     %exc
-    for cellNum = 1:length(find(fifty.experiments(1).populations(1).(cond{i}).exc.indx))
+    for cellNum = 1:length(fifty.experiments(1).populations(1).(cond{i}).exc.indx);
         id_exc(cellNum,:,i) = [fifty.experiments.singleunits((cellNum)).(cond{i}).stats.flags.exc; one_fifty.experiments.singleunits(cellNum).(cond{i}).stats.flags.exc; two_fifty.experiments.singleunits(cellNum).(cond{i}).stats.flags.exc;...
             three_fifty.experiments.singleunits(cellNum).(cond{i}).stats.flags.exc; four_fifty.experiments.singleunits(cellNum).(cond{i}).stats.flags.exc];
     end
     % sup
-    for cellNum = 1:length(find(fifty.experiments(1).populations(1).(cond{i}).sup.indx))
+    for cellNum = 1:length(fifty.experiments(1).populations(1).(cond{i}).exc.indx);
         id_sup(cellNum,:,i) = [fifty.experiments.singleunits(cellNum).(cond{i}).stats.flags.sup; one_fifty.experiments.singleunits(cellNum).(cond{i}).stats.flags.sup; two_fifty.experiments.singleunits(cellNum).(cond{i}).stats.flags.sup;...
             three_fifty.experiments.singleunits(cellNum).(cond{i}).stats.flags.sup; four_fifty.experiments.singleunits(cellNum).(cond{i}).stats.flags.sup];
     end
@@ -62,7 +62,6 @@ map = [1 1 1
     0 0 0];
 
 nunits = length(fifty.experiments(1).singleunits); 
-
 
 % exc
 for i=1:length(id_exc(1,1,:))
