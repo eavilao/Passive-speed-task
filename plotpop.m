@@ -370,7 +370,7 @@ switch plottype
                 plot(0.1:10,0.1:10,'--k');
                 set(gca,'TickDir', 'out', 'xtick', [0 1 2 3], 'ytick', [0 1 2 3], 'FontSize',18);
                 xlabel('(R_{com} - R_{0})/(R_{vis} - R_{0})'); ylabel('(R_{com} - R_{0})/(R_{ves} - R_{0})'); axis ([0 3 0 3]);
-                axis equal
+                %axis equal
                 
                 [p,h] = signrank(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup));
                 %text(2,1,['p = ' num2str(p)]);
@@ -380,18 +380,18 @@ switch plottype
                 hist(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),30);
                 xlim ([0 3])
                 set(gca,'ylim', [0 8], 'TickDir', 'out','ytick', [0 8],'xtick', [0 1 2 3],'XDir', 'reverse','FontSize', 18); xlabel('r_{ves}/r_{com}','FontSize', 18);
-                vline(median(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),'omitnan'));
+                vline(mean(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),'omitnan'));
                 % x axis histogram
                 figure; hold on;
                 hist(r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup),30);
                 xlim ([0 3])
                 set(gca, 'ylim', [0 14],'TickDir', 'out','ytick', [0 14],'xtick', [0 1 2 3],'FontSize', 18); xlabel('r_{vis}/r_{com}','FontSize', 18);
-                vline(median(r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup),'omitnan'));
+                vline(mean(r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup),'omitnan'));
                 % diagonal histogram
                 figure; hold on;
                 hist(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup) - r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup),linspace(-3,3,25))
                 xlabel('diagonal'); set(gca, 'TickDir', 'out', 'ytick', [0 10],'FontSize', 18); vline(0); xlim ([-2.423 2.423]);
-                vline(median(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup) - r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup),'omitnan'));
+                vline(mean(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup) - r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup),'omitnan'));
                 
                 
                 
