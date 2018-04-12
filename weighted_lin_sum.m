@@ -33,13 +33,13 @@ end
 
 % over time
 for cellNum = 1:length(units)
-[reg_coeff_pst(:,cellNum),conf_int_pst(:,:,cellNum)] = regress(speed_pst_com(:,cellNum),speed_pst(:,:,cellNum));
+[reg_coeff_pst(:,cellNum),conf_int_pst(:,:,cellNum),rint(:,:,cellNum),stats_regress] = regress(speed_pst_com(:,cellNum),speed_pst(:,:,cellNum));
 end
 
 % over avg
-for cellNum = 1:length(units)
-[reg_coeff_avg(:,cellNum),conf_int_avg(:,:,cellNum)] = regress(speed_mu_com(:,cellNum),speed_mu(:,:,cellNum));
-end
+% for cellNum = 1:length(units)
+% [reg_coeff_avg(:,cellNum),conf_int_avg(:,:,cellNum),rint(:,:,cellNum),stats_regress(:,:,cellNum)] = regress(speed_mu_com(:,cellNum),speed_mu(:,:,cellNum));
+% end
 
 % plot
 figure; hold on;
