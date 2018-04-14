@@ -82,6 +82,8 @@ for i=1:length(id_sup(1,1,:))
 end
 
 %% cosine similarity index
+
+%% exc
 for i=1:length(id_exc(1,1,:))
     for k = 1:length(id_exc(1,:,1))
         if k==6
@@ -97,8 +99,29 @@ figure; hold on;
 for i=1:length(cond)
     plot(cos_sim_indx(:,i),'Color',[1 2 3]==i, 'LineWidth', 2)
     set(gca,'xlim', [0 6], 'ylim', [0.3 1], 'xtick',[ 1 2 3 4 5],'ytick',[0.3 1], 'TickDir', 'out', 'FontSize', 18);
-    xlabel ('window comparison'); ylabel('Cosine similarity index');
+    xlabel ('window size comparison'); ylabel('Cosine similarity index "exc"');
 end
+
+%% sup 
+for i=1:length(id_sup(1,1,:))
+    for k = 1:length(id_sup(1,:,1))
+        if k==6
+            break
+        else
+            cos_sim_indx_sup(k,i) = sum(id_sup(:,k,i).*id_sup(:,k+1,i))/(sqrt(sum(id_sup(:,k,i))*sum(id_sup(:,k+1,i))));
+        end
+    end
+end
+
+% plot 
+figure; hold on; 
+for i=1:length(cond)
+    plot(cos_sim_indx_sup(:,i),'Color',[1 2 3]==i, 'LineWidth', 2)
+    set(gca,'xlim', [0 6], 'ylim', [0.3 1], 'xtick',[ 1 2 3 4 5],'ytick',[0.3 1], 'TickDir', 'out', 'FontSize', 18);
+    xlabel ('window size comparison'); ylabel('Cosine similarity index "sup"');
+end
+
+
 
 
 

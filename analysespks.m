@@ -32,6 +32,17 @@ for i=1:length(all_speeds)
     results.rate_avg(i).sig = std([spk.nspk]/results.tstim)/sqrt(ntrls);
 end
 
+if prs.doBootstrap & strcmp(modality,'vis')
+    for boot_num = 1:length(1:prs.bootnum);
+        count = 1; indx_boot = randsample(length(speeds),length(speeds),'true');
+        for i = 1:length(indx_boot)
+            spk_boot(count) = spks(indx_boot(i)).nspk;
+            count=count+1;
+        end
+        results.spk_boot_mu(boot_num) = mean(spk_boot);
+    end
+end
+
 %% statistical tests
 if ~strcmp(modality,'null')
     nspk_0 = [data.spks(data.stim.modality==-1).nspk];
