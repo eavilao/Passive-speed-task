@@ -36,9 +36,10 @@ if prs.doBootstrap & strcmp(modality,'vis')
     for boot_num = 1:length(1:prs.bootnum);
         count = 1; indx_boot = randsample(length(speeds),length(speeds),'true');
         for i = 1:length(indx_boot)
-            spk_boot(count) = spks(indx_boot(i)).nspk;
+            spk_boot{:,count} = spks(indx_boot(i)).tspk;
             count=count+1;
         end
+        hist(cell2mat({spk_boot}'),data.stim.time)/(ntrls*prs.dt); % mean psth
         results.spk_boot_mu(boot_num) = mean(spk_boot);
     end
 end
