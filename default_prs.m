@@ -111,3 +111,5 @@ prs.twin = 0.1;
 prs.twin_current = prs.twin/2;
 prs.twin_previous = prs.tbeg_acc - prs.twin/2;
 prs.win_after_motion = 0.25;
+prs.doBootstrap = 1; % bootstrapping to calc std dev in visual responses
+prs.bootnum = 100; % bootstrap iterations

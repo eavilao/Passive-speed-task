@@ -44,7 +44,7 @@ if prs.doBootstrap & strcmp(modality,'vis')
         [results.boot_max(boot_num),results.boot_max_indx(boot_num)] = max(results.rate_pst_boot(boot_num,:));
         results.boot_time_max(boot_num) = data.stim.time(results.boot_max_indx(boot_num));
     end
-    results.boot_vis_std = std(results.boot_time_max);
+    results.boot_vis_std = std(results.boot_time_max); 
 end
 
 %% statistical tests
