@@ -116,3 +116,4 @@ if ~isnan(events.latency.t_on)
         events.peak.type_on = 'sup';
     end
 end
+

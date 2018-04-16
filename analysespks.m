@@ -32,19 +32,21 @@ for i=1:length(all_speeds)
     results.rate_avg(i).sig = std([spk.nspk]/results.tstim)/sqrt(ntrls);
 end
 
-if prs.doBootstrap & strcmp(modality,'vis')
-    for boot_num = 1:prs.bootnum;
-        count = 1; indx_boot = randsample(length(speeds),length(speeds),'true');
-        for i = 1:length(indx_boot)
-            spk_boot{count,:} = spks(indx_boot(i)).tspk;
-            count=count+1;
-        end
-        results.rate_pst_boot(boot_num,:) = hist(vertcat(spk_boot{:}),data.stim.time)/(prs.bootnum*prs.dt); % mean psth
-        results.rate_pst_boot(boot_num,:) =  smooth_pst(results.rate_pst_boot(boot_num,:),prs.dt,prs.tsmooth); %smooth psth
-        [results.boot_max(boot_num),results.boot_max_indx(boot_num)] = max(results.rate_pst_boot(boot_num,:));
-        results.boot_time_max(boot_num) = data.stim.time(results.boot_max_indx(boot_num));
+if prs.doBootstrap
+    tbeg_acc = prs.tbeg_acc; tbeg_dec= prs.tbeg_dec; t_indx = data.stim.time>tbeg_acc & data.stim.time<=tbeg_dec;
+    t = data.stim.time(data.stim.time>tbeg_acc & data.stim.time<=tbeg_dec);
+    for boot_num = 1:prs.bootnum
+        %         count = 1;
+        indx_boot = randsample(length(speeds),length(speeds),'true');
+        %         for i = 1:length(indx_boot)
+        %             spk_boot{count,:} = spks(indx_boot(i)).tspk;
+        %             count=count+1;
+        %         end
+        rate_pst_boot(boot_num,:) = hist(cell2mat({spks(indx_boot).tspk}'),data.stim.time)/(prs.bootnum*prs.dt); % mean psth
+        rate_pst_boot(boot_num,:) = smooth_pst(rate_pst_boot(boot_num,:),prs.dt,prs.tsmooth); %smooth psth
+        boot_max_time(boot_num) = (t(rate_pst_boot(boot_num,t_indx)== max(rate_pst_boot(boot_num,t_indx))))-tbeg_acc;
+        results.peak_time.mu = mean(boot_max_time); results.peak_time.sem = std(boot_max_time);
     end
-    results.boot_vis_std = std(results.boot_time_max);
 end
 
 %% statistical tests
