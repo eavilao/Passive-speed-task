@@ -52,14 +52,28 @@ figure; hold on;
 % end
 
 % plot with error bars upper & lower bound 95% CI
+% for cellNum = 1:length(units)
+%     plot(reg_coeff_pst(1,cellNum),reg_coeff_pst(2,cellNum), '.c', 'MarkerSize', 18)
+%     h = errorbar(reg_coeff_pst(1,cellNum),reg_coeff_pst(2,cellNum),...
+%         reg_coeff_pst(1,cellNum)-conf_int_pst(1,1,cellNum),reg_coeff_pst(1,cellNum)-conf_int_pst(1,2,cellNum),...
+%         reg_coeff_pst(2,cellNum)-conf_int_pst(2,1,cellNum),reg_coeff_pst(2,cellNum)-conf_int_pst(2,2,cellNum), 'k');
+%     h.CapSize = 0;
+% end
+% plot(0:3,0:3, '-r'); axis([-0.55 1.5 -0.55 1.5])
+% set(gca, 'TickDir','out', 'FontSize', 18); vline(0);hline(0)
+% xlabel('vestibular weight'); ylabel('visual weight');
+% box off; axis square
+
+
+% plot with error bars upper & lower bound 95% CI
 for cellNum = 1:length(units)
-    plot(reg_coeff_pst(1,cellNum),reg_coeff_pst(2,cellNum), '.c', 'MarkerSize', 18)
-    h = errorbar(reg_coeff_pst(1,cellNum),reg_coeff_pst(2,cellNum),...
-        reg_coeff_pst(1,cellNum)-conf_int_pst(1,1,cellNum),reg_coeff_pst(1,cellNum)-conf_int_pst(1,2,cellNum),...
-        reg_coeff_pst(2,cellNum)-conf_int_pst(2,1,cellNum),reg_coeff_pst(2,cellNum)-conf_int_pst(2,2,cellNum), 'k');
+    plot(reg_coeff_pst(2,cellNum),reg_coeff_pst(1,cellNum), '.c', 'MarkerSize', 18)
+    h = errorbar(reg_coeff_pst(2,cellNum),reg_coeff_pst(1,cellNum),...
+reg_coeff_pst(2,cellNum)-conf_int_pst(2,1,cellNum),reg_coeff_pst(2,cellNum)-conf_int_pst(2,2,cellNum),...        
+reg_coeff_pst(1,cellNum)-conf_int_pst(1,1,cellNum),reg_coeff_pst(1,cellNum)-conf_int_pst(1,2,cellNum), 'k');
     h.CapSize = 0;
 end
-plot(0:3,0:3, '-r'); axis([-1.5 1.5 -1.5 1.5])
+plot(0:3,0:3, '-r'); axis([-0.55 1.5 -0.55 1.5])
 set(gca, 'TickDir','out', 'FontSize', 18); vline(0);hline(0)
-xlabel('vestibular weight'); ylabel('visual weight');
-box off
+xlabel('Visual weight'); ylabel('Vestibular weight');
+box off; axis square

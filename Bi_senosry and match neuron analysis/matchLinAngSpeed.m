@@ -106,12 +106,16 @@ ang_tunedAll_sum = sum(ang_tunedAll);
 ang_excOnly_sum = sum(ang_excOnly);
 
 %% Calculate percentage of neurons that would be speed tuned in both protocols by chance
-%
+% Percentages taken from tables
 p1_ves = 0.1520; p1_vis = 0.730; 
 p2_ves = 0.0970; p2_vis = 0.1;
 
 p_ves = (p1_ves)*(p2_ves); p_ves = p_ves*100
 p_vis = (p1_vis)*(p2_vis); p_vis = p_vis*100
 
+
+% Then we calculate the upper and lower bound of the CI for each using
+% binocdf using p_ves as mean or p_vis as mean and look for the value at 5
+% or 95. 
 
 

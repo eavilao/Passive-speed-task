@@ -32,7 +32,7 @@ for i=1:length(all_speeds)
     results.rate_avg(i).sig = std([spk.nspk]/results.tstim)/sqrt(ntrls);
 end
 
-if prs.doBootstrap
+if prs.doBootstrap && ~strcmp(modality,'null')
     tbeg_acc = prs.tbeg_acc; tbeg_dec= prs.tbeg_dec; t_indx = data.stim.time>tbeg_acc & data.stim.time<=tbeg_dec;
     t = data.stim.time(data.stim.time>tbeg_acc & data.stim.time<=tbeg_dec);
     for boot_num = 1:prs.bootnum
@@ -44,11 +44,16 @@ if prs.doBootstrap
         %         end
         rate_pst_boot(boot_num,:) = hist(cell2mat({spks(indx_boot).tspk}'),data.stim.time)/(prs.bootnum*prs.dt); % mean psth
         rate_pst_boot(boot_num,:) = smooth_pst(rate_pst_boot(boot_num,:),prs.dt,prs.tsmooth); %smooth psth
-        boot_max_time(boot_num) = (t(rate_pst_boot(boot_num,t_indx)== max(rate_pst_boot(boot_num,t_indx))))-tbeg_acc;
-        results.peak_time.mu = mean(boot_max_time); results.peak_time.sem = std(boot_max_time);
+        try 
+            find_max = (t(rate_pst_boot(boot_num,t_indx)== max(rate_pst_boot(boot_num,t_indx))))-tbeg_acc; % it sometimes detects 2 timepoints. 
+            boot_max_time(boot_num) = find_max(1);
+        catch
+            boot_max_time(boot_num) = nan;
+            continue;
+        end
+        results.peak_time.mu = nanmean(boot_max_time); results.peak_time.sem = nanstd(boot_max_time);
     end
 end
-
 %% statistical tests
 if ~strcmp(modality,'null')
     nspk_0 = [data.spks(data.stim.modality==-1).nspk];
