@@ -77,3 +77,6 @@ plot(0:3,0:3, '-r'); axis([-0.55 1.5 -0.55 1.5])
 set(gca, 'TickDir','out', 'FontSize', 18); vline(0);hline(0)
 xlabel('Visual weight'); ylabel('Vestibular weight');
 box off; axis square
+
+% paired t-test
+[h,p] = ttest(reg_coeff_pst(2,:),reg_coeff_pst(1,:)); 
