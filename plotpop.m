@@ -372,7 +372,9 @@ switch plottype
                 xlabel('(R_{com} - R_{0})/(R_{vis} - R_{0})'); ylabel('(R_{com} - R_{0})/(R_{ves} - R_{0})'); axis ([0 3 0 3]);
                 %axis equal
                 
-                [p,h] = signrank(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup));
+                %[p,h] = signrank(r_com(ves_vis_exc |
+                %ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup)); 
+                [p,h] = ttest(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup));
                 %text(2,1,['p = ' num2str(p)]);
                 
                 % y axis histogram
