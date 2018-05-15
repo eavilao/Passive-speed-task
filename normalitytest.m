@@ -1,3 +1,4 @@
+
 function Results=normalitytest(x)
 
 % This function calculates p-values for ten well-known normality tests and gives the results both on display and as a matrix.

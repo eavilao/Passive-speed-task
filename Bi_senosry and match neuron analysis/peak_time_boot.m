@@ -54,6 +54,11 @@ ves_sem_pop = mean(ves_sem(ves_indx));
 vis_sem_pop = mean(vis_sem(vis_indx)); 
 com_sem_pop = mean(com_sem(com_indx)); 
 
+%sem of std
+ves_sem_sem = ves_sem_pop/sqrt(length(ves_mu(ves_indx)))
+vis_sem_sem = vis_sem_pop/sqrt(length(vis_mu(vis_indx)))
+com_sem_sem = com_sem_pop/sqrt(length(com_mu(com_indx)))
+
 % compute CV
 cv_ves = ves_sem(ves_indx)./ves_mu(ves_indx); 
 cv_vis = vis_sem(vis_indx)./vis_mu(vis_indx);
