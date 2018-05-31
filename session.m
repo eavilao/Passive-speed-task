@@ -383,57 +383,57 @@ classdef session < handle
                 end
             end
             this.lfps.corr_spatiotemporal.x = 1:length(lfps);
-            this.lfps.corr_distance = corr_ch2dist(this.lfps.corr_spatial,0.1,exp_name);
+            this.lfps.corr_distance = corr_ch2dist(this.lfps.corr_spatial,0.1);
             this.lfps.corr_spatiotemporal.t = linspace(-1,1,2*round(1/dt)+1);
             clear wave_ves wa  ve_vis;
-            switch exp_name
-                case 'linearspeed'
-                    for i=1:length(lfps)
-                        wave_ves(i,:) = mean(lfps(i).ves.wave_pst);
-                        wave_vis(i,:) = mean(lfps(i).vis.wave_pst);
-                        wave_com(i,:) = mean(lfps(i).com.wave_pst);
-                    end
-                    this.csd.ves = computecsd(wave_ves,this.lfps.time,0.1); %dx = 0.1 mm
-                    this.lfps.ves = mean(wave_ves);
-                    this.csd.vis = computecsd(wave_vis,this.lfps.time,0.1); %dx = 0.1 mm
-                    this.lfps.vis = mean(wave_vis);
-                    this.csd.com = computecsd(wave_com,this.lfps.time,0.1); %dx = 0.1 mm
-                    this.lfps.com = mean(wave_com);
-                case 'angularspeed'
-                    for i=1:length(lfps)
-                        wave_ves(i,:) = mean(lfps(i).ves.wave_pst);
-                        wave_vis(i,:) = mean(lfps(i).vis.wave_pst);
-                    end
-                    this.csd.ves = computecsd(wave_ves,this.lfps.time,0.1); %dx = 0.1 mm
-                    this.lfps.ves = mean(wave_ves);
-                    this.csd.vis = computecsd(wave_vis,this.lfps.time,0.1); %dx = 0.1 mm
-                    this.lfps.vis = mean(wave_vis);
-                case '1DAzi'
-                    for i=1:length(lfps)
-                        wave_ves(i,:) = mean(lfps(i).ves.wave_pst);
-                        wave_vis(i,:) = mean(lfps(i).vis.wave_pst);
-                        wave_com(i,:) = mean(lfps(i).com.wave_pst);
-                    end
-                    this.csd.ves = computecsd(wave_ves,this.lfps.time,0.1); %dx = 0.1 mm
-                    this.lfps.ves = mean(wave_ves);
-                    this.csd.vis = computecsd(wave_vis,this.lfps.time,0.1); %dx = 0.1 mm
-                    this.lfps.vis = mean(wave_vis);
-                    this.csd.com = computecsd(wave_com,this.lfps.time,0.1); %dx = 0.1 mm
-                    this.lfps.com = mean(wave_com);
-                case 'HD'
-                    clear wave_ves wave_vis wave_com
-                    for i=1:length(lfps)
-                        wave_ves(i,:) = mean(lfps(i).ves.wave_pst);
-                        wave_vis(i,:) = mean(lfps(i).vis.wave_pst);
-                        wave_com(i,:) = mean(lfps(i).com.wave_pst);
-                    end
-                    this.csd.ves = computecsd(wave_ves,this.lfps.time,0.1); %dx = 0.1 mm
-                    this.lfps.ves = mean(wave_ves);
-                    this.csd.vis = computecsd(wave_vis,this.lfps.time,0.1); %dx = 0.1 mm
-                    this.lfps.vis = mean(wave_vis);
-                    this.csd.com = computecsd(wave_com,this.lfps.time,0.1); %dx = 0.1 mm
-                    this.lfps.com = mean(wave_com);
-            end
+%             switch exp_name
+%                 case 'linearspeed'
+%                     for i=1:length(lfps)
+%                         wave_ves(i,:) = mean(lfps(i).ves.wave_pst);
+%                         wave_vis(i,:) = mean(lfps(i).vis.wave_pst);
+%                         wave_com(i,:) = mean(lfps(i).com.wave_pst);
+%                     end
+%                     this.csd.ves = computecsd(wave_ves,this.lfps.time,0.1); %dx = 0.1 mm
+%                     this.lfps.ves = mean(wave_ves);
+%                     this.csd.vis = computecsd(wave_vis,this.lfps.time,0.1); %dx = 0.1 mm
+%                     this.lfps.vis = mean(wave_vis);
+%                     this.csd.com = computecsd(wave_com,this.lfps.time,0.1); %dx = 0.1 mm
+%                     this.lfps.com = mean(wave_com);
+%                 case 'angularspeed'
+%                     for i=1:length(lfps)
+%                         wave_ves(i,:) = mean(lfps(i).ves.wave_pst);
+%                         wave_vis(i,:) = mean(lfps(i).vis.wave_pst);
+%                     end
+%                     this.csd.ves = computecsd(wave_ves,this.lfps.time,0.1); %dx = 0.1 mm
+%                     this.lfps.ves = mean(wave_ves);
+%                     this.csd.vis = computecsd(wave_vis,this.lfps.time,0.1); %dx = 0.1 mm
+%                     this.lfps.vis = mean(wave_vis);
+%                 case '1DAzi'
+%                     for i=1:length(lfps)
+%                         wave_ves(i,:) = mean(lfps(i).ves.wave_pst);
+%                         wave_vis(i,:) = mean(lfps(i).vis.wave_pst);
+%                         wave_com(i,:) = mean(lfps(i).com.wave_pst);
+%                     end
+%                     this.csd.ves = computecsd(wave_ves,this.lfps.time,0.1); %dx = 0.1 mm
+%                     this.lfps.ves = mean(wave_ves);
+%                     this.csd.vis = computecsd(wave_vis,this.lfps.time,0.1); %dx = 0.1 mm
+%                     this.lfps.vis = mean(wave_vis);
+%                     this.csd.com = computecsd(wave_com,this.lfps.time,0.1); %dx = 0.1 mm
+%                     this.lfps.com = mean(wave_com);
+%                 case 'HD'
+%                     clear wave_ves wave_vis wave_com
+%                     for i=1:length(lfps)
+%                         wave_ves(i,:) = mean(lfps(i).ves.wave_pst);
+%                         wave_vis(i,:) = mean(lfps(i).vis.wave_pst);
+%                         wave_com(i,:) = mean(lfps(i).com.wave_pst);
+%                     end
+%                     this.csd.ves = computecsd(wave_ves,this.lfps.time,0.1); %dx = 0.1 mm
+%                     this.lfps.ves = mean(wave_ves);
+%                     this.csd.vis = computecsd(wave_vis,this.lfps.time,0.1); %dx = 0.1 mm
+%                     this.lfps.vis = mean(wave_vis);
+%                     this.csd.com = computecsd(wave_com,this.lfps.time,0.1); %dx = 0.1 mm
+%                     this.lfps.com = mean(wave_com);
+%             end
         end
         %% plot
         function plot(this,these_multiunits,plottype)
