@@ -14,14 +14,14 @@ monkeyInfo = [];
 %%%%%%%%%%%%%
 
 
-monkeyInfo(end+1).monk_id = 45; 
-monkeyInfo(end).session_id = 18; 
-monkeyInfo(end).run = 4; 
-monkeyInfo(end).coord.row = 21;       % Row
-monkeyInfo(end).coord.column = 13;    % Column
-monkeyInfo(end).coord.depth = 2928;   % Depth below gray matter (in microns)
-monkeyInfo(end).channels = 1:16;    % channels #? (all channelss=0)
-monkeyInfo(end).units = 0;      % All units? (sorted units=0; all units=1)
+% monkeyInfo(end+1).monk_id = 45; 
+% monkeyInfo(end).session_id = 18; 
+% monkeyInfo(end).run = 4; 
+% monkeyInfo(end).coord.row = 21;       % Row
+% monkeyInfo(end).coord.column = 13;    % Column
+% monkeyInfo(end).coord.depth = 2928;   % Depth below gray matter (in microns)
+% monkeyInfo(end).channels = 1:16;    % channels #? (all channelss=0)
+% monkeyInfo(end).units = 0;      % All units? (sorted units=0; all units=1)
 % % 
 % %%%%%%%%%%%%
 % %%%%%%%%%%%%
@@ -35,6 +35,7 @@ monkeyInfo(end).units = 0;      % All units? (sorted units=0; all units=1)
 % monkeyInfo(end).channels = 1:16;    % channels #? (all channelss=0)
 % monkeyInfo(end).units = 0;      % All units? (sorted units=0; all units=1)
 % % % 
+
 % 
 % %%%%%%%%%%%%%
 % %%%%%%%%%%%%%
@@ -233,7 +234,16 @@ monkeyInfo(end).units = 0;      % All units? (sorted units=0; all units=1)
 % %%%%%%%%%%%
 % 
 
+%% test
 
+monkeyInfo(end+1).monk_id= 45;    % monk_id# 
+monkeyInfo(end).session_id = 24;   % session_id #
+monkeyInfo(end).run = 4;        % Run #
+monkeyInfo(end).coord.row = 19;       % Row (grid)
+monkeyInfo(end).coord.column = 16;    % Column (grid)
+monkeyInfo(end).coord.depth = 3523;    % Depth below gray matter (in microns)
+monkeyInfo(end).channels = 1:16;    % channels #? (all channelss=0)
+monkeyInfo(end).units = 0;      % All units? (sorted units=0; all units=1)
 
 
 
