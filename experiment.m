@@ -98,7 +98,7 @@ classdef experiment < handle
                             fprintf(['... adding multiunit ' num2str(length(this.multiunits)+1) '\n']);
                             this.multiunits(end+1) = multiunit(this_monk_id,this_session_id,k,maxchannels,this_coord,units(1).spkwf); % create a new multiunit and fills basic properties
                             
-                            this.multiunits(end).addstim(stim,tfix,tstim,prs); % fill in the attribute called stim
+                            this.multiunits(end).add_stim(stim,tfix,tstim,prs); % fill in the attribute called stim
                             
                             this.multiunits(end).add_spks(units(1),tstim,ntrls,prs); % fill in spike times
                             this.multiunits(end).analyse_spks(this.name,prs);
