@@ -74,35 +74,32 @@ for u = 1:length(unit);
     for i=1:length(cond)
         for j=1:length(unique_headings)-1
             trials_n = all_headings{i} == unique_headings(j);
-            results(u).fit_data_neuro_cum{i}(j,3) = sum(trials_n);
+            fit_data_neuro_cum{i}(j,3) = sum(trials_n);
             if j < (1+length(unique_headings))/2
-                 results(u).Neuro_correct{i}(j) =  rocN(r{i,length(unique_headings)-j+1}{:},r{i,j}{:},100 );
+                Neuro_correct{i}(j) =  rocN(r{i,length(unique_headings)-j+1}{:},r{i,j}{:},100 );
             else
-                 results(u).Neuro_correct{i}(j) =  rocN(r{i,length(unique_headings)-j}{:}, r{i,(j+1)}{:},100);
+                Neuro_correct{i}(j) =  rocN(r{i,length(unique_headings)-j}{:}, r{i,(j+1)}{:},100);
             end
             if line_re{i} > 0
-                results(u).Neuro_correct{i}(j) = 1 -  results(u).Neuro_correct{i}(j);
+                results(u).Neuro_correct{i}(j) = 1 -  results(u)Neuro_correct{i}(j);
             end
         end
     end
     
-    try
-        for i=1:length(cond)
-            results(u).fit_data_neuro_cum{i}(:,1) = unique_headings(unique_headings~=0);
-            results(u).fit_data_neuro_cum{i}(:,2) = results(u).Neuro_correct{i}(:);
-            wichman_neu = pfit(results(u).fit_data_neuro_cum{i}(2:7,:),'plot_opt','no plot','shape','cumulative gaussian','n_intervals',1,'FIX_LAMBDA',0.001,'sens',0,'compute_stats','false','verbose','false');
-            results(u).Thresh_neu{i} = wichman_neu.params.est(2);
-            % negative and positive infinite value means flat tuning
-            if results(u).Thresh_neu{i}<0 | results(u).Thresh_neu{i}> 300
-                results(u).Thresh_neu{i} = 300;
-                wichman_neu.params.est(2) = 300;
-            end
-            results(u).Bias_neu{i} = wichman_neu.params.est(1);
-            results(u).neu_perf{i} = [wichman_neu.params.est(1),wichman_neu.params.est(2)];
+    for i=1:length(cond)
+        fit_data_neuro_cum{i}(:,1) = unique_headings(unique_headings~=0);
+        fit_data_neuro_cum{i}(:,2) = results(u).Neuro_correct{i}(:);
+        wichman_neu = pfit(fit_data_neuro_cum{i}(2:7,:),'plot_opt','no plot','shape','cumulative gaussian','n_intervals',1,'FIX_LAMBDA',0.001,'sens',0,'compute_stats','false','verbose','false');
+        Thresh_neu{i} = wichman_neu.params.est(2);
+        % negative and positive infinite value means flat tuning
+        if Thresh_neu{i}<0 | Thresh_neu{i}> 300
+            Thresh_neu{i} = 300;
+            wichman_neu.params.est(2) = 300;
         end
-    catch ME
-         fprintf(['unit ' num2str(u) ' : SESSION FAILED BECAUSE %s\n'],ME.message);
+        results(u).Bias_neu{i} = wichman_neu.params.est(1);
+        results(u).neu_perf{i} = [wichman_neu.params.est(1),wichman_neu.params.est(2)];
     end
+    
 %     %plot neurometric function
 %     h{1} = 'ro';  f{1} = 'r-';  g{1} = 'ro-';
 %     h{2} = 'gd';  f{2} = 'g-';  g{2} = 'gd-';

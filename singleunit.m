@@ -65,7 +65,8 @@ classdef singleunit < handle
         function psycho_neuro_metric(this,exp_name,prs)
             switch exp_name.name
                 case 'HD'
-                    psycho_neuro = compute_psychometric(this)
+                    this.psycho_neuro = compute_psychometric(this)
+                    save('psycho_neuro', 'psycho_neuro');
             end
         end
         %% destroy spike times

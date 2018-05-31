@@ -308,24 +308,24 @@ switch exp_name
                     psy_perf{i} = [wichman_psy.params.est(1),wichman_psy.params.est(2)];
                 end
                 
-                %plot psychometric with fit
-                h{1} = 'ro';  f{1} = 'r-';  g{1} = 'ro-';
-                h{2} = 'gd';  f{2} = 'g-';  g{2} = 'gd-';
-                h{3} = 'bs';  f{3} = 'b-';  g{3} = 'bs-';
-                figure; hold on;
-                for i=1:length(cond)
-                    xi = min(unique_headings) : 0.1 : max(unique_headings);
-                    beta = [0, 1.0];
-                    %   plot data in logarithmical space instead of linspace
-                    plot(unique_headings, pCorrect(i,:), h{i}, xi, cum_gaussfit(psy_perf{i}, xi), f{i}, 'MarkerSize', 6, 'Linewidth', 1.5);
-                    set(gca, 'TickDir', 'out', 'ylim',([0,1]), 'YTick', [0 0.5 1], 'FontSize', 16);
-                    xlabel('Heading Angles');
-                    ylabel('Rightward Choices');
-                    box off
-                end
-                title('Psychometric function')
-                annotation('textbox', [0.55 0.33 0.4 0.1], 'string', ['Threshold (1=Ves, 2=Vis, 3=Com)= ' num2str([Thresh_psy{:}])])
-                annotation('textbox',  [0.55 0.2 0.4 0.1], 'string', ['Bias (1=Ves, 2=Vis, 3=Com)= ' num2str([Bias_psy{:}])])
+%                 %plot psychometric with fit
+%                 h{1} = 'ro';  f{1} = 'r-';  g{1} = 'ro-';
+%                 h{2} = 'gd';  f{2} = 'g-';  g{2} = 'gd-';
+%                 h{3} = 'bs';  f{3} = 'b-';  g{3} = 'bs-';
+%                 figure; hold on;
+%                 for i=1:length(cond)
+%                     xi = min(unique_headings) : 0.1 : max(unique_headings);
+%                     beta = [0, 1.0];
+%                     %   plot data in logarithmical space instead of linspace
+%                     plot(unique_headings, pCorrect(i,:), h{i}, xi, cum_gaussfit(psy_perf{i}, xi), f{i}, 'MarkerSize', 6, 'Linewidth', 1.5);
+%                     set(gca, 'TickDir', 'out', 'ylim',([0,1]), 'YTick', [0 0.5 1], 'FontSize', 16);
+%                     xlabel('Heading Angles');
+%                     ylabel('Rightward Choices');
+%                     box off
+%                 end
+%                 title('Psychometric function')
+%                 annotation('textbox', [0.55 0.33 0.4 0.1], 'string', ['Threshold (1=Ves, 2=Vis, 3=Com)= ' num2str([Thresh_psy{:}])])
+%                 annotation('textbox',  [0.55 0.2 0.4 0.1], 'string', ['Bias (1=Ves, 2=Vis, 3=Com)= ' num2str([Bias_psy{:}])])
                 
                 % neurometric function
                 %gather
@@ -376,23 +376,23 @@ switch exp_name
                     neu_perf{i} = [wichman_neu.params.est(1),wichman_neu.params.est(2)];
                 end
                 
-                %plot neurometric function
-                h{1} = 'ro';  f{1} = 'r-';  g{1} = 'ro-';
-                h{2} = 'gd';  f{2} = 'g-';  g{2} = 'gd-';
-                h{3} = 'bs';  f{3} = 'b-';  g{3} = 'bs-';
-                
-                figure; hold on;
-                for i=1:length(cond)
-                    neu_heading = unique_headings(unique_headings~=0);
-                    xi = min(unique_headings) : 0.1 : max(unique_headings);
-                    plot(neu_heading, Neuro_correct{i}, h{i},xi,cum_gaussfit(neu_perf{i},xi),f{i},'MarkerSize', 6, 'Linewidth', 1.5);
-                    set(gca, 'TickDir', 'out', 'ylim',([0,1]), 'xlim',([-30,30]), 'YTick', [0 0.5 1], 'FontSize', 16);
-                    xlabel('Heading Angles');
-                    box off
-                    xlabel('Heading Angles');
-                    ylabel('Rightward Choices');
-                    title ('Neurometric function')
-                end
+%                 %plot neurometric function
+%                 h{1} = 'ro';  f{1} = 'r-';  g{1} = 'ro-';
+%                 h{2} = 'gd';  f{2} = 'g-';  g{2} = 'gd-';
+%                 h{3} = 'bs';  f{3} = 'b-';  g{3} = 'bs-';
+%                 
+%                 figure; hold on;
+%                 for i=1:length(cond)
+%                     neu_heading = unique_headings(unique_headings~=0);
+%                     xi = min(unique_headings) : 0.1 : max(unique_headings);
+%                     plot(neu_heading, Neuro_correct{i}, h{i},xi,cum_gaussfit(neu_perf{i},xi),f{i},'MarkerSize', 6, 'Linewidth', 1.5);
+%                     set(gca, 'TickDir', 'out', 'ylim',([0,1]), 'xlim',([-30,30]), 'YTick', [0 0.5 1], 'FontSize', 16);
+%                     xlabel('Heading Angles');
+%                     box off
+%                     xlabel('Heading Angles');
+%                     ylabel('Rightward Choices');
+%                     title ('Neurometric function')
+%                 end
         end
         
 end
