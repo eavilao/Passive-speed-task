@@ -53,35 +53,6 @@ for i=1:length(all_speeds)
     else
         results.stats.CP(i) = NaN;
     end
-    % extract data for psychometric
-    headings = speeds;
-    
-    for j=1:length(all_speeds)
-        id{j,:} = headings == all_speeds(j);
-        nTrials(j) = sum(id{j,:});
-        nCorrect(j)= sum(headings == all_speeds(j) & choice == 0);
-        pCorrect(j) = nCorrect(j)/nTrials(j);
-        if all_speeds(j)<0
-            pCorrect(j)= 1-pCorrect(j);
-        end
-        results.fit_data_psycho_cum(j,1)=all_speeds(j);
-        results.fit_data_psycho_cum(j,2)=pCorrect(j);
-        results.fit_data_psycho_cum(j,3)=nTrials(j);
-    end
-    
-    % fit psychometric function using Wichman's MLE method to estimate threshold and bias(same as TEMPO GUI)
-        wichman_psy = pfit(results.fit_data_psycho_cum,'plot_opt','no plot','shape','cumulative gaussian','n_intervals',1,'FIX_LAMBDA',0.001,'sens',0,'compute_stats','false','verbose','false');
-        results.Thresh_psy = wichman_psy.params.est(2);
-        results.Bias_psy = wichman_psy.params.est(1);
-        results.psy_perf = [wichman_psy.params.est(1),wichman_psy.params.est(2)];
-        
-        % neurometric function
-        
-        for j=1:length(unique_headings)
-            r{j} = [unit.(cond{i}).nspk(j)'];
-            r_avg = [unit.(cond{i}).rate_avg.mu];
-        end
-    
 end
 %% statistical tests
 if ~strcmp(modality,'null')

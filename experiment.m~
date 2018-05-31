@@ -196,18 +196,6 @@ classdef experiment < handle
                     this.populations(end).analyse_population(this.name,thisdata,unitname,prs);
             end
         end
-        
-         %% function to compute psychometric functions 
-        function compute_psychometric(this,unit_type)
-            switch unit_type
-                case 'multiunits'
-                    for i=1:length(this.multiunits)
-                    this.multiunits.psycho_neuro_metric(this);
-                    end 
-                case 'singleunits'
-                    this.singleunits.psycho_neuro_metric(this);
-            end
-        end
         %% function to save existing singleunits
         function savesingleunit(this,unitids)
             if nargin<2
@@ -219,6 +207,19 @@ classdef experiment < handle
                 clear(genvarname(this.singleunits(i).tag(1:5)));
             end
         end
+        
+        %% function to compute psychometric functions 
+        function compute_psychometric(this,unit_type)
+            switch unit_type
+                case 'multiunits'
+                    for i=1:length(this.multiunits)
+                    this.multiunits(i).psycho_neuro_metric(unit);
+                    end 
+                case 'singleunits'
+                    this.singleunits(i).psycho_neuro_metric(unit);
+            end
+        end
+        
         %% function to plot single/multiunit/lfp data from individual electrodes
         function plotunit(this,plottype,unit_type,unit_num,unit_id)
             if nargin<5, unit_id = {}; end
