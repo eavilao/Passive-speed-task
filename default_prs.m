@@ -71,7 +71,7 @@ switch exp_name
                 prs.tspk = [-0.5 +0.5];
                 prs.nspk = [0.9 -0.9];
         end
-        prs.filepath = ['Z:\NewZDrive\Users\Eric_Avila\Stefania_1DAzi\Raw_data\'];
+        prs.filepath = ['Z:\NewZDrive\Users\Eric_Avila\1D_HD_paper\1D_raw\'];
         prs.tstim_on = 0;
         prs.tbeg_acc = 0.4;
         prs.tbeg_dec = 2.4;
@@ -94,15 +94,15 @@ switch exp_name
                 prs.tspk = [-0.5 +0.5];
                 prs.nspk = [0.25 -0.25]; % 0.25 after stim on / 0.25 before stim ends
         end
-        prs.filepath = ['Z:\Users\Eric_Avila\HD_1DAzi_paper\HD\HD_Raw_Data\'];
+        prs.filepath = ['Z:\NewZDrive\Users\Eric_Avila\1D_HD_paper\HD_raw\'];
         prs.tstim_on = 0;
         prs.tbeg_acc = 0.1;
         prs.tbeg_dec = 1;
         prs.tstim_off = 1;
 end
 prs.dt = 0.01; % temporal resolution (seconds)
-prs.tsmooth = 0.05; %0.05; %0.025; % width of gaussian (seconds)for speed protocols %0.1 for 1DAzi;  
-prs.tsmooth_pop = 0.04; %0.04; % width of gaussian (seconds) for population averaged psth %0.1 for 1DAzi;
+prs.tsmooth = 0.1; %0.05 lin ang protocols; %0.025; % width of gaussian (seconds)for speed protocols %0.1 for 1DAzi;  
+prs.tsmooth_pop = 0.1; %0.04; % width of gaussian (seconds) for population averaged psth lin ang speed %0.1 for 1DAzi;
 prs.alpha = 0.05; % significance level
 prs.Nd = 100; % LFP downsample factor
 prs.spkwf_fs = 40000; % sampling rate of spike waveform
