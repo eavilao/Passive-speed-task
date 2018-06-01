@@ -96,6 +96,24 @@ if ~strcmp(modality,'null')
         strcmp(results.stats.events.rise.type_off,'sup');
 end
 
+% compute choice correlation
+results.npsk_choice_heading = [([spks.nspk])' choice' speeds'];
+[rho,pval] = partialcorr(results.npsk_choice_heading); % choice controlling for heading
+
+results.parCorr.rho_spks_choice = rho(2);
+results.parCorr.pval_spks_choice = pval(2);
+
+results.parCorr.rho_spks_heading = rho(3);
+results.parCorr.rho_spks_heading = pval(3);
+
+% correlation
+[rho2,pval2]=corrcoef(results.npsk_choice_heading);
+results.corr.rho_spks_choice = rho2(2); 
+results.corr.pval_spks_choice = pval2(2); 
+
+results.corr.rho_spks_heading = rho2(3); 
+results.corr.pval_spks_heading = pval2(3); 
+
 %% com-ves and com-vis correlations
 if strcmp(modality,'com')
     r_ves = [data.ves.rate_avg.mu];

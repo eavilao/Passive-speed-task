@@ -71,7 +71,7 @@ switch exp_name
                 prs.tspk = [-0.5 +0.5];
                 prs.nspk = [0.9 -0.9];
         end
-        prs.filepath = ['Z:\NewZDrive\Users\Eric_Avila\Stefania_1DAzi\Raw_data\'];
+        prs.filepath = ['/Users/eavilao/Documents/Temp_data/1DAziHD/'];
         prs.tstim_on = 0;
         prs.tbeg_acc = 0.4;
         prs.tbeg_dec = 2.4;
@@ -94,7 +94,7 @@ switch exp_name
                 prs.tspk = [-0.5 +0.5];
                 prs.nspk = [0.25 -0.25]; % 0.25 after stim on / 0.25 before stim ends
         end
-        prs.filepath = ['Z:\Users\Eric_Avila\HD_1DAzi_paper\HD\HD_Raw_Data\'];
+        prs.filepath = ['/Users/eavilao/Documents/Temp_data/1DAziHD/'];
         prs.tstim_on = 0;
         prs.tbeg_acc = 0.1;
         prs.tbeg_dec = 1;
