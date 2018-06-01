@@ -104,7 +104,7 @@ results.parCorr.rho_spks_choice = rho(2);
 results.parCorr.pval_spks_choice = pval(2);
 
 results.parCorr.rho_spks_heading = rho(3);
-results.parCorr.rho_spks_heading = pval(3);
+results.parCorr.pval_spks_heading = pval(3);
 
 % correlation
 [rho2,pval2]=corrcoef(results.npsk_choice_heading);

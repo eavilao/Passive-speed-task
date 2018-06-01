@@ -209,11 +209,11 @@ classdef session < handle
                     this.singleunits.com = analysecorr(stim,nspk,'com');
                     this.singleunits.com.fisherinfo = analyseinfo(stim,nspk,'com');
                 case 'HD'
-                    this.singleunits.ves = analysecorr(stim,nspk,'ves');
+                    this.singleunits.ves = analysecorr_HD(stim,nspk,'ves');
                     this.singleunits.ves.fisherinfo = analyseinfo(stim,nspk,'ves');
-                    this.singleunits.vis = analysecorr(stim,nspk,'vis');
+                    this.singleunits.vis = analysecorr_HD(stim,nspk,'vis');
                     this.singleunits.vis.fisherinfo = analyseinfo(stim,nspk,'vis');
-                    this.singleunits.com = analysecorr(stim,nspk,'com');
+                    this.singleunits.com = analysecorr_HD(stim,nspk,'com');
                     this.singleunits.com.fisherinfo = analyseinfo(stim,nspk,'com');
             end
         end
