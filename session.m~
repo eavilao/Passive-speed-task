@@ -384,10 +384,7 @@ classdef session < handle
             end
             this.lfps.corr_spatiotemporal.x = 1:length(lfps);
             if strcmp(exp_name, 'HD')
-                this.lfps.corr_distance = corr_ch2dist_HD(this.lfps.corr_spatial,0.1);
-            else
             this.lfps.corr_distance = corr_ch2dist(this.lfps.corr_spatial,0.1);
-            end
             this.lfps.corr_spatiotemporal.t = linspace(-1,1,2*round(1/dt)+1);
             clear wave_ves wa  ve_vis;
 %             switch exp_name
