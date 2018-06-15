@@ -15,7 +15,7 @@ switch plottype
     case 'psth'
         switch exp_name
             case 'linearspeed'
-                % gather data 
+                % gather data
                 t = pop.(cond{1}).(pop_type).rate_pst.time;
                 for i=1:length(cond)
                     r(i,:,:) = pop.(cond{i}).(pop_type).rate_pst.mu;
@@ -117,7 +117,7 @@ switch plottype
                     end
                     title([num2str(cond{i}) ' : ' num2str(pop.groupname) ' ' num2str(pop_type) ...
                         ' ' num2str(pop.unitname)]);
-                    xlabel('Time (s)'); ylabel('Firing rate (spks/s)');             
+                    xlabel('Time (s)'); ylabel('Firing rate (spks/s)');
                 end
                 
                 
@@ -234,7 +234,7 @@ switch plottype
             'XTickLabel',s,'TickDir','Out','Fontsize',16);
         title([num2str(pop.groupname) ' ' num2str(pop_type) ...
             ' ' num2str(pop.unitname)]);
-        xlabel('Preferred direction (deg)'); ylabel('No. of neurons'); 
+        xlabel('Preferred direction (deg)'); ylabel('No. of neurons');
         
         
     case 'discindx'
@@ -252,8 +252,11 @@ switch plottype
         %         end
         
         for i=1:length(cond)
-            d0 = pop.(cond{i}).unresp.discindx; med_d0(i) = nanmedian(d0);
-            d = pop.(cond{i}).(pop_type).discindx; med_d(i) = nanmedian(d);
+            %             d0 = pop.(cond{i}).unresp.discindx; med_d0(i) = nanmedian(d0); % median
+            %             d = pop.(cond{i}).(pop_type).discindx; med_d(i) = nanmedian(d); % median
+            d0 = pop.(cond{i}).unresp.discindx; med_d0(i) = nanmean(d0); %mean
+            d = pop.(cond{i}).(pop_type).discindx; med_d(i) = nanmean(d); % mean
+            
             y0(i,:) = hist(d0,dcntr); y(i,:) = hist(d,dcntr);
             %             z0(i,:) = ecdfhist(ecdf(d0),dcntr); z(i,:) = ecdfhist(ecdf(d),dcntr);
             %             hold on;
@@ -307,7 +310,7 @@ switch plottype
             %             axis([0 1 0 1]);
             
         end
-       
+        
         
         
         % plot
@@ -321,7 +324,7 @@ switch plottype
             vline(med_d(i),'--k'); vline(med_d_tuned(i),'--c');
             title([num2str(cond{i}) ' : ' num2str(pop.groupname) ' ' num2str(pop_type) ...
                 ' ' num2str(pop.unitname)]);
-             ylabel('No. of neurons'); xlabel('DDI');
+            ylabel('No. of neurons'); xlabel('DDI');
         end
         
         
@@ -372,7 +375,7 @@ switch plottype
                 xlabel('(R_{com} - R_{0})/(R_{vis} - R_{0})'); ylabel('(R_{com} - R_{0})/(R_{ves} - R_{0})'); axis ([0 3 0 3]);
                 %axis equal
                 
-                %[p,h] = signrank(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup)); 
+                %[p,h] = signrank(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup));
                 [p,h] = ttest(r_com(ves_vis_exc | ves_vis_sup)./r_ves(ves_vis_exc | ves_vis_sup),r_com(ves_vis_exc | ves_vis_sup)./r_vis(ves_vis_exc | ves_vis_sup));
                 %text(2,1,['p = ' num2str(p)]);
                 
@@ -398,7 +401,7 @@ switch plottype
                 
             case 'angularspeed'
                 units = pop{1};
-                plot(0.1:100,0.1:100,'--k'); 
+                plot(0.1:100,0.1:100,'--k');
                 set(gca,'XScale','Log'); set(gca,'YScale','Log');
                 xlabel('r_{ves} (spk/s)'); ylabel('r_{vis} (spk/s)'); axis ([0 100 0 100]);
                 for i=1:length(units)
@@ -414,7 +417,7 @@ switch plottype
             case '1DAzi'
                 units = pop{1};
                 pop = pop{2};
-                 
+                
                 for  i=1:length(units)
                     r_ves(i) = max([units(i).ves.rate_avg.mu]); %- units(i).null.rate_avg.mu;
                     r_vis(i) = max([units(i).vis.rate_avg.mu]); %- units(i).null.rate_avg.mu;
@@ -432,17 +435,17 @@ switch plottype
                 
                 
                 
-                % plot 
+                % plot
                 figure; hold on;
                 scatter(r_ves./r_com,...
                     r_vis./r_com,'ok');
-                plot(0.1:10,0.1:10,'--k'); 
+                plot(0.1:10,0.1:10,'--k');
                 set(gca,'XScale','Log'); set(gca,'YScale','Log', 'TickDir', 'out');
                 xlabel('r_{ves}/r_{com}'); ylabel('r_{vis}/r_{com}'); axis ([0.1 10 0.1 10]);
                 [h,p] = ttest(r_ves./r_com,r_vis./r_com);
                 text(2,1,['p = ' num2str(p)]);
                 vline(1); hline(1);
-                scatter(nanmean(r_ves(r_com~=0)./r_com(r_com~=0)), nanmean(r_vis(r_com~=0)./r_com(r_com~=0)), 'or', 'filled'); 
+                scatter(nanmean(r_ves(r_com~=0)./r_com(r_com~=0)), nanmean(r_vis(r_com~=0)./r_com(r_com~=0)), 'or', 'filled');
                 
                 %plot mean ves+vis vs com
                 figure; hold on;
@@ -819,4 +822,200 @@ switch plottype
                 'XTickLabel',[],'YTickLabel',[],'TickDir','Out','Fontsize',16);
         end
         
+    case 'hist_times'
+        %% peak response
+        %gather tuned neurons
+        for i=1:length(cond)
+            peak_tuned{i,:} = pop.(cond{i}).tuned.peak.t_on;
+        end
+        
+        % all neurons
+        for i=1:length(cond)
+            peak_all{i,:} = pop.(cond{i}).all.peak.t_on;
+        end
+        
+        % peak tuned neurons
+        figure; hold on;
+        for i=1:length(cond)
+            h1 = histfit(peak_tuned{i,:},10,'kernel');
+            alpha(0.25);
+            set(h1(1),'FaceColor',[1 2 3]==i, 'EdgeColor',[1 2 3]==i);
+            set(h1(2),'Color',[1 2 3]==i);
+            title('tuned neurons')
+            endt op
+            
+            % peak all neurons
+            figure; hold on;
+            for i=1:length(cond)
+                h1 = histfit(peak_all{i,:},10,'kernel');
+                alpha(0);
+                set(h1(1),'FaceColor',[1 2 3]==i, 'EdgeColor',[1 2 3]==i);
+                set(h1(2),'Color',[1 2 3]==i);
+            end
+            set(gca,'xlim',[0 2.9], 'TickDir', 'out', 'FontSize', 18,'XTick',[0 0.1 0.5 2.5 2.9]);
+            xlabel('Peak response time (s)'); ylabel('Nr. of neurons')
+            %% latency
+            %
+            %         % all neurons
+            %         for i=1:length(cond)
+            %             latency_all{i,:} = pop.(cond{i}).all.latency.t_on;
+            %         end
+            %
+            %          % latency all neurons
+            %         figure; hold on;
+            %         for i=1:length(cond)
+            %             h1 = histfit(latency_all{i,:},10,'kernel');
+            %             alpha(0);
+            %             set(h1(1),'FaceColor',[1 2 3]==i, 'EdgeColor',[1 2 3]==i);
+            %             set(h1(2),'Color',[1 2 3]==i);
+            %         end
+            %         set(gca,'xlim',[0 2.9], 'TickDir', 'out', 'FontSize', 18,'XTick',[0 0.1 0.5 2.5 2.9]);
+            %         xlabel('Latency (s)'); ylabel('Nr. of neurons')
+        end
+        
+    case 'neuronal_threshold'
+        
+        %gather neuronal threshold
+        load('psycho_neuro.mat');
+        ps = psycho_neuro;
+        for u=1:length(ps)
+            for i=1:length(cond)
+                if numel(cell2mat(ps(u).Thresh_neu))==3
+                    thresh(u,i) = cell2mat(ps(u).Thresh_neu(i));
+                else
+                    continue;
+                end
+            end
+            
+        end
+        
+        %plot threshold distributions for different conditions
+        
+        figure; hold on;
+        histogram(thresh(:,1), 50, 'EdgeColor', 'r', 'DisplayStyle', 'stairs');
+        histogram(thresh(:,2), 50, 'EdgeColor', 'g', 'DisplayStyle', 'stairs');
+        histogram(thresh(:,3), 50, 'EdgeColor', 'b', 'DisplayStyle', 'stairs');
+        set(gca, 'TickDir', 'out','xlim',([1.5 180]),'ylim',([0 20]),'FontSize', 18);
+        xlabel('neuronal threshold'); ylabel('nr of neurons')
+        
+        % plot scatter ves vs com and vis vs com TODO remove >300
+        ves = thresh(:,1); 
+        vis = thresh(:,2); 
+        com = thresh(:,3); 
+        [h_ves, p_ves] = ttest(ves,com);
+        [h_vis, p_vis] = ttest(vis,com);
+        
+        % plot 
+        figure; hold on
+        plot(ves, com, '.r', 'MarkerSize', 18);
+        plot(vis, com, '.g','MarkerSize', 18);
+        set(gca,'TickDir', 'out','xlim',([0 200]), 'ylim', [0 200], 'FontSize', 18)
+        plot(0:200, 0:200, 'k')
+        xlabel ('Vis | Ves'); ylabel('Com')
+        title('neuronal threshold')
+        
+    case 'psycho_threshold'
+        
+        %gather neuronal threshold
+        load('psycho_neuro.mat');
+        ps = psycho_neuro;
+        for u=1:length(ps)
+            for i=1:length(cond)
+                if numel(cell2mat(ps(u).Thresh_neu))==3
+                    thresh(u,i) = cell2mat(ps(u).Thresh_psy(i));
+                else
+                    continue;
+                end
+            end
+            
+        end
+        
+        %plot threshold distributions for different conditions
+        
+        figure; hold on;
+        histogram(thresh(:,1), 50, 'EdgeColor', 'r', 'DisplayStyle', 'stairs');
+        histogram(thresh(:,2), 50, 'EdgeColor', 'g', 'DisplayStyle', 'stairs');
+        histogram(thresh(:,3), 50, 'EdgeColor', 'b', 'DisplayStyle', 'stairs');
+        set(gca, 'TickDir', 'out','xlim',([1.5 180]),'ylim',([0 20]),'FontSize', 18);
+        xlabel('neuronal threshold'); ylabel('nr of neurons')
+        
+    case 'psychometric_all'
+        
+        load('psycho_neuro.mat');
+        ps = psycho_neuro;
+      
+        h{1} = 'ro';  f{1} = 'r-';
+        h{2} = 'gd';  f{2} = 'g-';
+        h{3} = 'bs';  f{3} = 'b-';
+        
+        %get mean function
+        for i=1:length(cond)
+            for u=1:length(ps)
+                unique_headings = ps(u).fit_data_psycho_cum{1}(:,1);
+                xi = min(unique_headings) : 0.1 : max(unique_headings);
+                fit_vals{i,u,:} = cum_gaussfit(ps(u).psy_perf{i},xi); 
+            end
+            
+        end
+        
+        for i=1:length(cond)
+            figure; hold on;
+            for u=1:length(ps)
+                unique_headings = ps(u).fit_data_psycho_cum{1}(:,1);
+                xi = min(unique_headings) : 0.1 : max(unique_headings);
+                beta = [0, 1.0];
+                %   plot data in logarithmical space instead of linspace
+                %plot(unique_headings, pCorrect(i,:), h{i}, xi, cum_gaussfit(psy_perf{i}, xi), f{i}, 'MarkerSize', 6, 'Linewidth', 1.5);
+                %plot(unique_headings, ps(u).fit_data_psycho_cum{i}(:,2), h{i}, xi, cum_gaussfit(ps(u).psy_perf{i}, xi), f{i}, 'MarkerSize', 6, 'Linewidth', 1.5);
+                plot(xi, cum_gaussfit(ps(u).psy_perf{i}, xi),'Linewidth', 1.5, 'Color', [1 2 3]==i)
+                set(gca, 'TickDir', 'out', 'ylim',([0,1]), 'YTick', [0 0.5 1], 'FontSize', 16);
+                xlabel('Heading Angles');
+                ylabel('Rightward Choices');
+                box off
+            end
+            title('Psychometric function all')
+        end
+        
+    case 'neurometric_all'
+        
+        load('psycho_neuro.mat');
+        ps = psycho_neuro;
+        
+        h{1} = 'ro';  f{1} = 'r-'; 
+        h{2} = 'gd';  f{2} = 'g-';  
+        h{3} = 'bs';  f{3} = 'b-'; 
+        for i=1:length(cond)
+            figure; hold on;
+            counter =0; 
+            for u=1:length(ps)
+                
+                unique_headings = ps(u).fit_data_neuro_cum{1}(:,1);
+                xi = min(unique_headings) : 0.1 : max(unique_headings);
+                %plot(neu_heading, ps(u).Neuro_correct{i}, h{i},xi,cum_gaussfit(ps(u).neu_perf{i},xi),f{i},'MarkerSize', 6, 'Linewidth', 1.5);
+                if ~isempty(ps(u).neu_perf) & ~(numel(ps(u).neu_perf)<3)
+                    plot(xi,cum_gaussfit(ps(u).neu_perf{i},xi),'Linewidth', 1.5, 'Color', [1 2 3]==i)
+                    set(gca, 'TickDir', 'out', 'ylim',([0,1]), 'xlim',([-50,50]), 'YTick', [0 0.5 1], 'FontSize', 16);
+                    xlabel('Heading Angles');
+                    box off
+                    xlabel('Heading Angles');
+                    ylabel('Rightward Choices');
+                    counter = counter+1; 
+                end
+            end
+            title(['Neurometric function all n= ' num2str(counter)])
+        end
+        
+    case 'choice_corr'
+        
+     r_ves = pop.ves.all.rate_avg;
+     r_vis = pop.vis.all.rate_avg;
+     r_com = pop.com.all.rate_avg;
+     
+     headings = pop.ves.all.stim;
+     unique_headings = unique(pop.ves.all.stim); 
+     
+     for units = 1:length(r_ves)
+         
+     end
+     
 end

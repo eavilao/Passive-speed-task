@@ -34,7 +34,7 @@ for i=1:length(all_speeds)
     results.rate_pst(i,:) = smooth_pst(results.rate_pst(i,:),prs.dt,prs.tsmooth);
     results.rate_avg(i).mu = mean([spk.nspk]/results.tstim); 
     results.rate_avg(i).sig = std([spk.nspk]/results.tstim)/sqrt(ntrls);
-    results.rate_trial(i,:) = [spk.nspk]/results.tstim; 
+    results.rate_trial = 
     
     % correct choices
     results.rate_pst_correct(i,:) = hist(cell2mat({spk_corr.tspk}'),data.stim.time)/(ntrls*prs.dt);

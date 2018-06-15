@@ -101,8 +101,8 @@ switch exp_name
         prs.tstim_off = 1;
 end
 prs.dt = 0.01; % temporal resolution (seconds)
-prs.tsmooth = 0.05; %0.05; %0.025; % width of gaussian (seconds)for speed protocols %0.1 for 1DAzi;  
-prs.tsmooth_pop = 0.04; %0.04; % width of gaussian (seconds) for population averaged psth %0.1 for 1DAzi;
+prs.tsmooth = 0.1; %0.05 speed paper; %0.025; % width of gaussian (seconds)for speed protocols %0.1 for 1DAzi;  
+prs.tsmooth_pop = 0.1; %0.04 speed paper; % width of gaussian (seconds) for population averaged psth %0.1 for 1DAzi;
 prs.alpha = 0.05; % significance level
 prs.Nd = 100; % LFP downsample factor
 prs.spkwf_fs = 40000; % sampling rate of spike waveform

@@ -18,9 +18,15 @@ switch unitname
         end
         results.all.rate_pst.time = thisdata(1).time(1:min(ntime));
         
-        % population average tuning curves
+        % population average tuning curves and nspk
         for i=1:nunits
-            rate_avg(i,:) = [thisdata(i).rate_avg.mu]; 
+            rate_avg(i,:) = [thisdata(i).rate_avg.mu];
+            
+            % nspk, choice, heading
+            results.all.nspk(:,i) = thisdata(i).npsk_choice_heading(1:179,1);
+            results.all.choice(:,i) = thisdata(i).npsk_choice_heading(1:179,2);
+            results.all.heading(:,i) = thisdata(i).npsk_choice_heading(1:179,3);
+            
         end
         results.all.rate_avg.stim = thisdata(1).stim;
         results.all.rate_avg.mu = mean(rate_avg);
@@ -29,10 +35,12 @@ switch unitname
         % stim-response correlation
         y=rate_avg; x=repmat(thisdata(1).stim,[size(y,1),1]); [r,p] = corr(x(:),y(:));
         results.all.stats.corr_stimrate.r = r; results.all.stats.corr_stimrate.p = p;
+        results.all.rate_avg = y; results.all.stim = x; 
         
         % discindx stats
         for i=1:nunits, d(i) = thisdata(i).stats.discindx; end
         results.all.discindx = d;
+        
 
         % preferred/anti-preferred stimulus
         for i=1:nunits, stim_pref(i) = thisdata(i).stats.stim.pref; end

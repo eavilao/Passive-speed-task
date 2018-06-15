@@ -234,8 +234,8 @@ switch exp_name
                         plot(t,unit.(cond{i}).rate_pst(l,:),'Color',i==[1 2 3], 'linewidth',2)
                         set(gca,'xlim',[-0.1 3],'XTick',[0 0.5 2.5 2.9]-0.1,...
                             'XTickLabel',[0 0.5 2.5 2.9],'ylim', [0 ybounds],'YTick',[0 ybounds/2 ybounds], 'TickDir','Out','Fontsize',18);
-                        %                         set(gca,'xlim',[-0.1 3],'XTick',[0 0.1 0.5 2.5 2.9]-0.1,...
-                        %                             'XTickLabel',[0 0.1 0.5 2.5 2.9],'ylim', [0 52],'YTick',[0 26 52], 'TickDir','Out','Fontsize',18);
+%                                                 set(gca,'xlim',[-0.1 3],'XTick',[0 0.1 0.5 2.5 2.9]-0.1,...
+%                                                     'XTickLabel',[0 0.1 0.5 2.5 2.9],'ylim', [0 60],'YTick',[0 30 60], 'TickDir','Out','Fontsize',18);
                         if l == 3
                             title(['m' num2str(monk_id) 's' num2str(session_id) 'ch' num2str(channel_no) '\_u' num2str(unit_num)]);
                         end
@@ -266,133 +266,189 @@ switch exp_name
             case 'psth'
                 % gather
                 t = unit.(cond{1}).time;
+                heading = unit.ves.stim; 
                 for i=1:length(cond)
-                    r(i,:) = mean(unit.(cond{i}).rate_pst);
+                    r_corr(i,:,:) = unit.(cond{i}).rate_pst_correct; 
+                    r_err(i,:,:) = unit.(cond{i}).rate_pst_err; 
+                    r_all(i,:,:) =  unit.(cond{i}).rate_pst; 
                 end
+
                 % plot
-                hold on;
-                for i=1:size(r,1)
-                    plot(t,r(i,:),'Color',[1 2 3]==i,'linewidth',2);
-                end
-                set(gca,'xlim',[-0.1 1.5],'XTick',[0 0.1 0.5 1.2 1.6]-0.1,...
-                    'XTickLabel',[0 0.1 0.5 1.2 1.6],'TickDir','Out','Fontsize',16);
-                title(['m' num2str(monk_id) 's' num2str(session_id) 'ch' num2str(channel_no) '\_u' num2str(unit_num)]);
-            case 'psychometric'
-                %gather
-                unique_headings = unique(unit.ves.headings);
-                for i=1:length(cond)
-                    all_headings{i,:} = unit.(cond{i}).headings;
-                    choice{i,:} = unit.(cond{i}).choice;
-                end
-                
-                for i=1:length(cond)
-                    for j=1:length(unique_headings)
-                        id{j,:} = all_headings{i} == unique_headings(j);
-                        nTrials(i,j) = sum(id{j,:});
-                        nCorrect(i,j)= sum(all_headings{i} == unique_headings(j) & choice{i} == 0);
-                        pCorrect(i,j) = nCorrect(i,j)/nTrials(i,j);
-                        if unique_headings(j)<0
-                            pCorrect(i,j)= 1-pCorrect(i,j);
-                        end
-                        fit_data_psycho_cum{i}(j,1)=unique_headings(j);
-                        fit_data_psycho_cum{i}(j,2)=pCorrect(i,j);
-                        fit_data_psycho_cum{i}(j,3)=nTrials(i,j);
+
+                for i=1:size(r_corr,1)
+                    for j=1:length(heading)
+                        figure;
+                        plot(t,squeeze(r_corr(i,j,:)),'Color',[1 2 3]==i,'linewidth',2);
+                        title(['heading ' num2str(heading(j))]);
+                        set(gca,'xlim',[-0.1 1.5],'XTick',[0 0.1 0.5 1.2 1.6]-0.1,...
+                            'XTickLabel',[0 0.1 0.5 1.2 1.6],'ylim', [0 30], 'TickDir','Out','Fontsize',16);
                     end
                 end
                 
-                % fit psychometric function using Wichman's MLE method to estimate threshold and bias(same as TEMPO GUI)
-                for i=1:length(cond)
-                    wichman_psy = pfit(fit_data_psycho_cum{i},'plot_opt','no plot','shape','cumulative gaussian','n_intervals',1,'FIX_LAMBDA',0.001,'sens',0,'compute_stats','false','verbose','false');
-                    Thresh_psy{i} = wichman_psy.params.est(2);
-                    Bias_psy{i} = wichman_psy.params.est(1);
-                    psy_perf{i} = [wichman_psy.params.est(1),wichman_psy.params.est(2)];
-                end
+                % title(['m' num2str(monk_id) 's' num2str(session_id) 'ch' num2str(channel_no) '\_u' num2str(unit_num)]);
+                
+            case 'psychometric'
+                
+                %gather
+                load('psycho_neuro.mat');
+                ps = psycho_neuro(unit_num);
+                unique_headings = unique(unit.ves.headings);
+%                 for i=1:length(cond)
+%                     all_headings{i,:} = unit.(cond{i}).headings;
+%                     choice{i,:} = unit.(cond{i}).choice;
+%                 end
+                
+%                 for i=1:length(cond)
+%                     for j=1:length(unique_headings)
+%                         id{j,:} = all_headings{i} == unique_headings(j);
+%                         nTrials(i,j) = sum(id{j,:});
+%                         nCorrect(i,j)= sum(all_headings{i} == unique_headings(j) & choice{i} == 0);
+%                         pCorrect(i,j) = nCorrect(i,j)/nTrials(i,j);
+%                         if unique_headings(j)<0
+%                             pCorrect(i,j)= 1-pCorrect(i,j);
+%                         end
+%                         fit_data_psycho_cum{i}(j,1)=unique_headings(j);
+%                         fit_data_psycho_cum{i}(j,2)=pCorrect(i,j);
+%                         fit_data_psycho_cum{i}(j,3)=nTrials(i,j);
+%                     end
+%                 end
+%                 
+%                 % fit psychometric function using Wichman's MLE method to estimate threshold and bias(same as TEMPO GUI)
+%                 for i=1:length(cond)
+%                     wichman_psy = pfit(fit_data_psycho_cum{i},'plot_opt','no plot','shape','cumulative gaussian','n_intervals',1,'FIX_LAMBDA',0.001,'sens',0,'compute_stats','false','verbose','false');
+%                     Thresh_psy{i} = wichman_psy.params.est(2);
+%                     Bias_psy{i} = wichman_psy.params.est(1);
+%                     psy_perf{i} = [wichman_psy.params.est(1),wichman_psy.params.est(2)];
+%                 end
                 
 %                 %plot psychometric with fit
-%                 h{1} = 'ro';  f{1} = 'r-';  g{1} = 'ro-';
-%                 h{2} = 'gd';  f{2} = 'g-';  g{2} = 'gd-';
-%                 h{3} = 'bs';  f{3} = 'b-';  g{3} = 'bs-';
-%                 figure; hold on;
-%                 for i=1:length(cond)
-%                     xi = min(unique_headings) : 0.1 : max(unique_headings);
-%                     beta = [0, 1.0];
-%                     %   plot data in logarithmical space instead of linspace
-%                     plot(unique_headings, pCorrect(i,:), h{i}, xi, cum_gaussfit(psy_perf{i}, xi), f{i}, 'MarkerSize', 6, 'Linewidth', 1.5);
-%                     set(gca, 'TickDir', 'out', 'ylim',([0,1]), 'YTick', [0 0.5 1], 'FontSize', 16);
-%                     xlabel('Heading Angles');
-%                     ylabel('Rightward Choices');
-%                     box off
-%                 end
-%                 title('Psychometric function')
-%                 annotation('textbox', [0.55 0.33 0.4 0.1], 'string', ['Threshold (1=Ves, 2=Vis, 3=Com)= ' num2str([Thresh_psy{:}])])
-%                 annotation('textbox',  [0.55 0.2 0.4 0.1], 'string', ['Bias (1=Ves, 2=Vis, 3=Com)= ' num2str([Bias_psy{:}])])
+                h{1} = 'ro';  f{1} = 'r-';  g{1} = 'ro-';
+                h{2} = 'gd';  f{2} = 'g-';  g{2} = 'gd-';
+                h{3} = 'bs';  f{3} = 'b-';  g{3} = 'bs-';
+                figure; hold on;
+                for i=1:length(cond)
+                    xi = min(unique_headings) : 0.1 : max(unique_headings);
+                    beta = [0, 1.0];
+                    %   plot data in logarithmical space instead of linspace
+                    %plot(unique_headings, pCorrect(i,:), h{i}, xi, cum_gaussfit(psy_perf{i}, xi), f{i}, 'MarkerSize', 6, 'Linewidth', 1.5);
+                    plot(unique_headings, ps.fit_data_psycho_cum{i}(:,2), h{i}, xi, cum_gaussfit(ps.psy_perf{i}, xi), f{i}, 'MarkerSize', 6, 'Linewidth', 1.5);
+                    set(gca, 'TickDir', 'out', 'ylim',([0,1]), 'YTick', [0 0.5 1], 'FontSize', 16);
+                    xlabel('Heading Angles');
+                    ylabel('Rightward Choices');
+                    box off
+                end
+                title(['Psychometric function unit ' num2str(unit_num)])
+                annotation('textbox', [0.55 0.33 0.4 0.1], 'string', ['Threshold (1=Ves, 2=Vis, 3=Com)= ' num2str([ps.Thresh_psy{:}])])
+                annotation('textbox',  [0.55 0.2 0.4 0.1], 'string', ['Bias (1=Ves, 2=Vis, 3=Com)= ' num2str([ps.Bias_psy{:}])])
                 
                 % neurometric function
                 %gather
-                for i=1:length(cond)
-                    for j=1:length(unique_headings)
-                        r{i,j} = [unit.(cond{i}).nspk(j)'];
-                        r_avg(i,:) = [unit.(cond{i}).rate_avg.mu];
-                    end
-                end
-                
-                % decide whether ves and vis is congruent tuning. Fit line by linear
-                % regression first and compare the sign of each condition to decide whether
-                % congruent or opposite, this is used to check whether congruent cells lead
-                % to better neuronal performance in combined condition, and vice versa
-                for i=1:length(cond)
-                    [rr,pp] = corrcoef(unique_headings,r_avg(i,:));
-                    line_re{i} = rr(1,2);
-                    line_p{i} = pp(1,2);
-                end
-                
-                % calculate propotion correct from area under ROC curves, each heading is compared to 0 heading
-                for i=1:length(cond)
-                    for j=1:length(unique_headings)-1
-                        trials_n = all_headings{i} == unique_headings(j);
-                        fit_data_neuro_cum{i}(j,3) = sum(trials_n);
-                        if j < (1+length(unique_headings))/2
-                            Neuro_correct{i}(j) =  rocN(r{i,length(unique_headings)-j+1}{:},r{i,j}{:},100 );
-                        else
-                            Neuro_correct{i}(j) =  rocN(r{i,length(unique_headings)-j}{:}, r{i,(j+1)}{:},100);
-                        end
-                        if line_re{i} > 0
-                            Neuro_correct{i}(j) = 1 - Neuro_correct{i}(j);
-                        end
-                    end
-                end
-                
-                for i=1:length(cond)
-                    fit_data_neuro_cum{i}(:,1) = unique_headings(unique_headings~=0);
-                    fit_data_neuro_cum{i}(:,2) = Neuro_correct{i}(:);
-                    wichman_neu = pfit(fit_data_neuro_cum{i}(2:7,:),'plot_opt','no plot','shape','cumulative gaussian','n_intervals',1,'FIX_LAMBDA',0.001,'sens',0,'compute_stats','false','verbose','false');
-                    Thresh_neu{i} = wichman_neu.params.est(2);
-                    % negative and positive infinite value means flat tuning
-                    if Thresh_neu{i}<0 | Thresh_neu{i}> 300
-                        Thresh_neu{i} = 300;
-                        wichman_neu.params.est(2) = 300;
-                    end
-                    Bias_neu{i} = wichman_neu.params.est(1);
-                    neu_perf{i} = [wichman_neu.params.est(1),wichman_neu.params.est(2)];
-                end
+%                 for i=1:length(cond)
+%                     for j=1:length(unique_headings)
+%                         r{i,j} = [unit.(cond{i}).nspk(j)'];
+%                         r_avg(i,:) = [unit.(cond{i}).rate_avg.mu];
+%                     end
+%                 end
+%                 
+%                 % decide whether ves and vis is congruent tuning. Fit line by linear
+%                 % regression first and compare the sign of each condition to decide whether
+%                 % congruent or opposite, this is used to check whether congruent cells lead
+%                 % to better neuronal performance in combined condition, and vice versa
+%                 for i=1:length(cond)
+%                     [rr,pp] = corrcoef(unique_headings,r_avg(i,:));
+%                     line_re{i} = rr(1,2);
+%                     line_p{i} = pp(1,2);
+%                 end
+%                 
+%                 % calculate propotion correct from area under ROC curves, each heading is compared to 0 heading
+%                 for i=1:length(cond)
+%                     for j=1:length(unique_headings)-1
+%                         trials_n = unit.(cond{i}).headings == unique_headings(j);
+%                         ps.fit_data_neuro_cum{i}(j,3) = sum(trials_n);
+%                         if j < (1+length(unique_headings))/2
+%                             ps.Neuro_correct{i}(j) =  rocN(r{i,length(unique_headings)-j+1}{:},r{i,j}{:},100 );
+%                         else
+%                             ps.Neuro_correct{i}(j) =  rocN(r{i,length(unique_headings)-j}{:}, r{i,(j+1)}{:},100);
+%                         end
+%                         if line_re{i} > 0
+%                             ps.Neuro_correct{i}(j) = 1 - Neuro_correct{i}(j);
+%                         end
+%                     end
+%                 end
+%                 
+%                 for i=1:length(cond)
+%                     ps.fit_data_neuro_cum{i}(:,1) = unique_headings(unique_headings~=0);
+%                     ps.fit_data_neuro_cum{i}(:,2) = ps.Neuro_correct{i}(:);
+%                     wichman_neu = pfit(fit_data_neuro_cum{i}(2:7,:),'plot_opt','no plot','shape','cumulative gaussian','n_intervals',1,'FIX_LAMBDA',0.001,'sens',0,'compute_stats','false','verbose','false');
+%                     Thresh_neu{i} = wichman_neu.params.est(2);
+%                     % negative and positive infinite value means flat tuning
+%                     if Thresh_neu{i}<0 | Thresh_neu{i}> 300
+%                         Thresh_neu{i} = 300;
+%                         wichman_neu.params.est(2) = 300;
+%                     end
+%                     Bias_neu{i} = wichman_neu.params.est(1);
+%                     neu_perf{i} = [wichman_neu.params.est(1),wichman_neu.params.est(2)];
+%                 end
                 
 %                 %plot neurometric function
-%                 h{1} = 'ro';  f{1} = 'r-';  g{1} = 'ro-';
-%                 h{2} = 'gd';  f{2} = 'g-';  g{2} = 'gd-';
-%                 h{3} = 'bs';  f{3} = 'b-';  g{3} = 'bs-';
-%                 
-%                 figure; hold on;
-%                 for i=1:length(cond)
-%                     neu_heading = unique_headings(unique_headings~=0);
-%                     xi = min(unique_headings) : 0.1 : max(unique_headings);
-%                     plot(neu_heading, Neuro_correct{i}, h{i},xi,cum_gaussfit(neu_perf{i},xi),f{i},'MarkerSize', 6, 'Linewidth', 1.5);
-%                     set(gca, 'TickDir', 'out', 'ylim',([0,1]), 'xlim',([-30,30]), 'YTick', [0 0.5 1], 'FontSize', 16);
-%                     xlabel('Heading Angles');
-%                     box off
-%                     xlabel('Heading Angles');
-%                     ylabel('Rightward Choices');
-%                     title ('Neurometric function')
-%                 end
+                h{1} = 'ro';  f{1} = 'r-';  g{1} = 'ro-';
+                h{2} = 'gd';  f{2} = 'g-';  g{2} = 'gd-';
+                h{3} = 'bs';  f{3} = 'b-';  g{3} = 'bs-';
+                
+                figure; hold on;
+                for i=1:length(cond)
+                    neu_heading = unique_headings(unique_headings~=0);
+                    xi = min(unique_headings) : 0.1 : max(unique_headings);
+                    plot(neu_heading, ps.Neuro_correct{i}, h{i},xi,cum_gaussfit(ps.neu_perf{i},xi),f{i},'MarkerSize', 6, 'Linewidth', 1.5);
+                    set(gca, 'TickDir', 'out', 'ylim',([0,1]), 'xlim',([-50,50]), 'YTick', [0 0.5 1], 'FontSize', 16);
+                    xlabel('Heading Angles');
+                    box off
+                    xlabel('Heading Angles');
+                    ylabel('Rightward Choices');
+                    title (['Neurometric function unit ' num2str(unit_num)]); 
+                end
+                
+            case 'neurometric_firing'
+                % gather
+                load('psycho_neuro.mat'); 
+                ps = psycho_neuro(unit_num); 
+                unique_headings = unique(unit.ves.headings);
+                
+                
+                h{1} = 'ro';  f{1} = 'r-';
+                h{2} = 'gd';  f{2} = 'g-';
+                h{3} = 'bs';  f{3} = 'b-';
+                
+                figure; hold on;
+                for i=1:length(cond)
+                    neu_heading = unique_headings(unique_headings~=0);
+                    xi = min(unique_headings) : 0.1 : max(unique_headings);
+                    plot(neu_heading, ps.Neuro_correct{i}, h{i},xi,cum_gaussfit(ps.neu_perf{i},xi),f{i},'MarkerSize', 6, 'Linewidth', 1.5);
+                    set(gca, 'TickDir', 'out', 'ylim',([0,1]), 'xlim',([-15,15]), 'YTick', [0 0.5 1], 'FontSize', 18);
+                    xlabel('Heading Angles');
+                    box off
+                    xlabel('Heading Angles');
+                    ylabel('Rightward Choices');
+                    title (['Neurometric function unit ' num2str(unit_num)]); 
+                end
+                
+                % plot raw data
+                figure; hold on; 
+                s=unit.ves.stim;
+                for i=1:length(cond)
+                    r(i,:) = [unit.(cond{i}).rate_avg.mu];
+                    e(i,:) = [unit.(cond{i}).rate_avg.sig];
+                end
+                
+                for i=1:size(r,1)
+                    errorbar(s,r(i,:),e(i,:),'Color',[1 2 3]==i,'linewidth',2);
+                end
+                 set(gca, 'TickDir', 'out', 'xlim',([-15,15]), 'yTick', [0 9 18], 'FontSize', 18);
+                title (['Tuning_heading unit ' num2str(unit_num)]);
+                xlabel('Heading angle (deg)'); ylabel('Firing rate (spks/s)')
+                
+            
+                
         end
         
 end
