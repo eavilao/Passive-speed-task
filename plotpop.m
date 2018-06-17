@@ -1007,15 +1007,6 @@ switch plottype
         
     case 'choice_corr'
         
-     r_ves = pop.ves.all.rate_avg;
-     r_vis = pop.vis.all.rate_avg;
-     r_com = pop.com.all.rate_avg;
-     
-     headings = pop.ves.all.stim;
-     unique_headings = unique(pop.ves.all.stim); 
-     
-     for units = 1:length(r_ves)
-         
-     end
+ z= 1; 
      
 end

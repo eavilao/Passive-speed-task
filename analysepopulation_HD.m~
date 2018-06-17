@@ -29,8 +29,8 @@ switch unitname
             
             % heading corr
             x = thisdata(i).rate_trial;
-            stim = thisdata(i).stim'; 
-            results.all.stats.corr_trial(i,:,1) = corr(x,thisdata(i).stim'); 
+            stim = thisdata(i).stim'; stim = repmat(stim,1,length(x));
+            results.all.stats.corr_trial()
         end
         results.all.rate_avg.stim = thisdata(1).stim;
         results.all.rate_avg.mu = mean(rate_avg);
