@@ -26,11 +26,6 @@ switch unitname
             results.all.nspk(:,i) = thisdata(i).npsk_choice_heading(1:179,1);
             results.all.choice(:,i) = thisdata(i).npsk_choice_heading(1:179,2);
             results.all.heading(:,i) = thisdata(i).npsk_choice_heading(1:179,3);
-            
-            % heading corr
-            x = thisdata(i).rate_trial;
-            stim = thisdata(i).stim'; 
-            results.all.stats.corr_trial(i,:,1) = corr(x,thisdata(i).stim'); 
         end
         results.all.rate_avg.stim = thisdata(1).stim;
         results.all.rate_avg.mu = mean(rate_avg);
