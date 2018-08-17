@@ -447,7 +447,7 @@ switch plottype
                 vline(1); hline(1);
                 scatter(nanmean(r_ves(r_com~=0)./r_com(r_com~=0)), nanmean(r_vis(r_com~=0)./r_com(r_com~=0)), 'or', 'filled');
                 
-                %plot mean ves+vis vs com
+                % plot mean ves+vis vs com
                 figure; hold on;
                 scatter(r_ves_vis,r_com,'ok','filled');
                 plot(0.1:1000,0.1:1000,'--k');
@@ -1007,6 +1007,176 @@ switch plottype
         
     case 'choice_corr'
         
- z= 1; 
-     
+        % corr
+        for i=1:length(cond)
+            heading = pop.(cond{i}).all.heading;
+            choice = pop.(cond{i}).all.choice;
+            spk = pop.(cond{i}).all.nspk;
+            for j=1:length(pop.ves.all.stim)
+                [corr_spk_headRHO(i,j),corr_spk_headPVAL(i,j)] = corr(spk(:,j),heading(:,j));
+                [corr_spk_choiceRHO(i,j),corr_spk_choicePVAL(i,j)] = corr(spk(:,j),choice(:,j));
+            end
+        end
+        
+        % plot spk_heading
+        figure; hold on;
+        for i=1:length(cond)
+            plot(corr_spk_headRHO(i,:),'.','Color', [1 2 3]==i, 'MarkerSize', 12)
+        end
+        set(gca, 'TickDir', 'out', 'FontSize', 18);
+        ylabel('corr'); xlabel('neuron')
+        title('corr spk headRHO')
+        
+        
+        % plot spk_choice
+        figure; hold on;
+        for i=1:length(cond)
+            plot(corr_spk_choiceRHO(i,:),'.','Color', [1 2 3]==i, 'MarkerSize', 12)
+        end
+        set(gca, 'TickDir', 'out', 'FontSize', 18);
+        ylabel('corr'); xlabel('neuron')
+        title('corr spk choiceRHO')
+        
+        
+        % hist spk_heading corr
+        figure; hold on;
+        histogram(corr_spk_headRHO(1,:),'EdgeColor', 'r', 'FaceColor', 'r');
+        histogram(corr_spk_headRHO(2,:),'EdgeColor', 'g', 'FaceColor', 'g');
+        histogram(corr_spk_headRHO(3,:),'EdgeColor', 'b', 'FaceColor', 'b');
+        set(gca, 'TickDir', 'out', 'FontSize', 18);
+        xlabel('Corr'); ylabel('nr of neurons')
+        title('spk head corr');
+        
+        % hist spk_choice corr
+        figure; hold on;
+        histogram(corr_spk_choiceRHO(1,:),'EdgeColor', 'r', 'FaceColor', 'r');
+        histogram(corr_spk_choiceRHO(2,:),'EdgeColor', 'g', 'FaceColor', 'g');
+        histogram(corr_spk_choiceRHO(3,:),'EdgeColor', 'b', 'FaceColor', 'b');
+        set(gca, 'TickDir', 'out', 'FontSize', 18);
+        xlabel('Corr'); ylabel('nr of neurons')
+        title('spk choice corr');
+        
+        % plot spks vs heading (108 vis, 115 com, 93 com)
+        figure; hold on;
+        for i=1:length(cond)
+            spk = pop.(cond{i}).all.nspk(:,93);
+            heading = pop.(cond{i}).all.heading(:,93);
+            if strcmp(cond{i}, 'ves')
+                spk_mu = pop.(cond{i}).all.rate_avg(93,:);
+                unique_headings = unique(pop.ves.all.stim)';
+                plot(heading, spk+0.5,'.', 'Color', [1 2 3]==i, 'MarkerSize', 12);
+                plot(unique_headings, spk_mu, 'Color',[1 2 3]==i, 'LineWidth', 2);
+            else
+                spk_mu = pop.(cond{i}).all.rate_avg(93,:);
+                unique_headings = unique(pop.ves.all.stim)';
+                plot(heading, spk,'.', 'Color', [1 2 3]==i, 'MarkerSize', 12);
+                plot(unique_headings, spk_mu, 'Color',[1 2 3]==i, 'LineWidth', 2);
+            end
+            set(gca, 'TickDir', 'out', 'FontSize', 18);
+            xlabel('Heading (deg)'); ylabel('spks & firing rate (spks/s)')
+        end
+        
+        % plot just mean spks and heading
+        figure; hold on; 
+        for i=1:length(cond)
+            spk = pop.(cond{i}).all.nspk(:,93);
+            heading = pop.(cond{i}).all.heading(:,93); 
+            spk_mu = pop.(cond{i}).all.rate_avg(93,:);
+            unique_headings = unique(pop.ves.all.stim)';
+            plot(unique_headings, spk_mu, 'Color',[1 2 3]==i, 'LineWidth', 2);
+        end
+        set(gca, 'TickDir', 'out', 'FontSize', 18);
+        xlabel('Heading (deg)'); ylabel('spks & firing rate (spks/s)')
+        
+        
+        
+    case 'partial_corr'
+        
+        % gather spk_choice
+        for j=1:length(pop.ves.all.stim)
+            for i=1:length(cond)
+                spk_choice(i,j) = abs(pop.(cond{i}).all.parCorr(1,2,j));
+            end
+        end
+        
+        % gather spk_heading
+        for j=1:length(pop.ves.all.stim)
+            for i=1:length(cond)
+                spk_heading(i,j) = abs(pop.(cond{i}).all.parCorr(1,3,j));
+            end
+        end
+        
+        % plot distributions
+        % spk_choice
+        figure; hold on;
+        for i=1:length(cond)
+            h1 = histfit(spk_choice(i,:),20,'kernel'); 
+            set(h1(1),'FaceColor', [1 2 3] ==i, 'EdgeColor', [1 2 3] ==i);
+            set(h1(2),'Color',[1 2 3] ==i);
+            alpha(0.25)
+        end
+        set(gca, 'TickDir', 'out', 'FontSize', 18)
+        xlabel('abs parCorr spk choice');ylabel('nr of neurons');
+        
+        % spk_heading
+         figure; hold on;
+        for i=1:length(cond)
+            h1 = histfit(spk_heading(i,:),20,'kernel'); 
+            set(h1(1),'FaceColor', [1 2 3] ==i, 'EdgeColor', [1 2 3] ==i);
+            set(h1(2),'Color',[1 2 3] ==i);
+            alpha(0.25)
+        end
+        set(gca, 'TickDir', 'out', 'FontSize', 18)
+        xlabel('abs parCorr spk heading');ylabel('nr of neurons');
+        
+         %% plot distributions no fit
+        % spk_choice
+        figure; hold on;
+        for i=1:length(cond)
+            hist(spk_choice(i,:),20);
+            [h1,x1] = hist(spk_choice(i,:),20);
+            plot(x1,h1, 'Color', [1 2 3]==i,'LineWidth', 3);
+        end
+        set(gca, 'TickDir', 'out', 'FontSize', 18)
+        xlabel('abs parCorr spk choice');ylabel('nr of neurons');
+        
+        % spk_heading
+        figure; hold on;
+        for i=1:length(cond)
+            hist(spk_heading(i,:),20);
+            [h1,x1] = hist(spk_heading(i,:),20);
+            plot(x1,h1, 'Color', [1 2 3]==i, 'LineWidth', 3);
+        end
+        set(gca, 'TickDir', 'out', 'FontSize', 18)
+        xlabel('abs parCorr spk heading');ylabel('nr of neurons');
+        
+    case 'partial_corr_thresh'
+        % gather parCorr choice_spk
+        for j=1:length(pop.ves.all.stim)
+            for i=1:length(cond)
+                spk(i,j) = pop.(cond{i}).all.parCorr(1,2,j);
+            end
+        end
+        
+        %gather neuronal threshold  
+        load('psycho_neuro.mat');
+        ps = psycho_neuro;
+        for u=1:length(ps)
+            for i=1:length(cond)
+                if numel(cell2mat(ps(u).Thresh_neu))==3
+                    thresh(u,i) = cell2mat(ps(u).Thresh_neu(i));
+                else
+                    continue;
+                end
+            end
+            
+        end
+        
+        % plot neuronal thresholds vs partial choice corr
+        figure; hold on;
+        for i=1:length(cond)
+            plot(spk(i,:), thresh(:,i),'.', 'Color', [1 2 3] == i, 'MarkerSize', 12); 
+        end
+        set(gca, 'TickDir', 'out', 'FontSize', 18)
+        xlabel('corr'); ylabel('neuronal threshold')
 end

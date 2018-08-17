@@ -26,7 +26,11 @@ switch unitname
             results.all.nspk(:,i) = thisdata(i).npsk_choice_heading(1:179,1);
             results.all.choice(:,i) = thisdata(i).npsk_choice_heading(1:179,2);
             results.all.heading(:,i) = thisdata(i).npsk_choice_heading(1:179,3);
+            
+            results.all.parCorr(:,:,i) = partialcorr(thisdata(i).npsk_choice_heading); 
+            
         end
+        
         results.all.rate_avg.stim = thisdata(1).stim;
         results.all.rate_avg.mu = mean(rate_avg);
         results.all.rate_avg.sig = std(rate_avg)/sqrt(nunits);
