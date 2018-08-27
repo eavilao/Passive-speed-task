@@ -23,7 +23,7 @@ monkeyInfo (end).coord.column = 16;    % Column
 monkeyInfo (end).coord.depth = 2461;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;   % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
+monkeyInfo (end).tempo_gui = 0;      % All units? (sorted units=0; all units=1)
 
 % % %%%%%%%%%%%%%
 % % %%%%%%%%%%%%%
@@ -36,7 +36,6 @@ monkeyInfo (end).coord.column = 14;    % Column
 monkeyInfo (end).coord.depth = 2005;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 % 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -72,7 +71,6 @@ monkeyInfo (end).coord.column = 17;    % Column
 monkeyInfo (end).coord.depth = 2710;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 
 % %%%%%%%%%%%%%
@@ -98,7 +96,6 @@ monkeyInfo (end).coord.column = 18;    % Column
 monkeyInfo (end).coord.depth = 2616;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 % 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -111,7 +108,6 @@ monkeyInfo (end).coord.column = 12;    % Column
 monkeyInfo (end).coord.depth = 2049;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -124,7 +120,6 @@ monkeyInfo (end).coord.column = 18;    % Column
 monkeyInfo (end).coord.depth = 2938;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -137,7 +132,6 @@ monkeyInfo (end).coord.column = 14;    % Column
 monkeyInfo (end).coord.depth = 2095;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -174,7 +168,6 @@ monkeyInfo (end).coord.column = 16;    % Column
 monkeyInfo (end).coord.depth = 3862;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -199,7 +192,6 @@ monkeyInfo (end).coord.column = 13;    % Column
 monkeyInfo (end).coord.depth = 3779;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -212,7 +204,6 @@ monkeyInfo (end).coord.column = 16;    % Column
 monkeyInfo (end).coord.depth = 4002;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -237,7 +228,6 @@ monkeyInfo (end).coord.column = 13;    % Column
 monkeyInfo (end).coord.depth = 2928;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 
 %%%%%%%%%%%%
@@ -251,7 +241,6 @@ monkeyInfo (end).coord.column = 16;    % Column (grid)
 monkeyInfo (end).coord.depth = 1980;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 
 %%%%%%%%%%%%
@@ -265,7 +254,6 @@ monkeyInfo (end).coord.column = 12;    % Column (grid)
 monkeyInfo (end).coord.depth = 1792;    % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 
 %%%%%%%%%%%%
@@ -279,7 +267,6 @@ monkeyInfo (end).coord.column = 16;    % Column (grid)
 monkeyInfo (end).coord.depth = 3523;    % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 % % 
 
 %%%%%%%%%%%%
@@ -293,7 +280,6 @@ monkeyInfo (end).coord.column = 10;    % Column (grid)
 monkeyInfo (end).coord.depth = 2037;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 
 %%%%%%%%%%%%%
@@ -307,7 +293,6 @@ monkeyInfo (end).coord.column = 11;    % Column (grid)
 monkeyInfo (end).coord.depth = 2233;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 
 %%%%%%%%%%%%%
@@ -321,7 +306,6 @@ monkeyInfo (end).coord.column = 20;    % Column (grid)
 monkeyInfo (end).coord.depth = 2105;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 
 %%%%%%%%%%%%%
@@ -335,7 +319,6 @@ monkeyInfo (end).coord.column = 15;    % Column (grid)
 monkeyInfo (end).coord.depth = 2313;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 
 %%%%%%%%%%%%%
@@ -349,7 +332,6 @@ monkeyInfo (end).coord.column = 13;    % Column (grid)
 monkeyInfo (end).coord.depth = 2785;   % Depth below gray matter (in microns)
 monkeyInfo (end).channel = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 
 %%%%%%%%%%%%
@@ -363,7 +345,6 @@ monkeyInfo (end).coord.column = 13;    % Column (grid)
 monkeyInfo (end).coord.depth = 2298;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 
 %%%%%%%%%%%%%
@@ -377,7 +358,6 @@ monkeyInfo (end).coord.column = 14;    % Column (grid)
 monkeyInfo (end).coord.depth = 1700;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %% 
 
@@ -397,7 +377,6 @@ monkeyInfo (end).coord.column = 19;    % Column (grid)
 monkeyInfo (end).coord.depth = 1708 ;  % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%
 %%%%%%%%%%%
@@ -410,7 +389,6 @@ monkeyInfo (end).coord.column = 18;    % Column (grid)
 monkeyInfo (end).coord.depth = 3183 ;  % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 % 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -423,7 +401,6 @@ monkeyInfo (end).coord.column = 21;    % Column (grid)
 monkeyInfo (end).coord.depth =  4168;  % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -448,7 +425,6 @@ monkeyInfo (end).coord.column = 19;    % Column (grid)
 monkeyInfo (end).coord.depth = 3045;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 % 
 % %%%%%%%%%%%%%
 % %%%%%%%%%%%%%
@@ -461,7 +437,6 @@ monkeyInfo (end).coord.column = 15;    % Column (grid)
 monkeyInfo (end).coord.depth = 3784;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%
 %%%%%%%%%%%
@@ -474,7 +449,6 @@ monkeyInfo (end).coord.column = 18;    % Column (grid)
 monkeyInfo (end).coord.depth = 3040 ;  % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -487,7 +461,6 @@ monkeyInfo (end).coord.column = 21;    % Column (grid)
 monkeyInfo (end).coord.depth = 3330;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -500,7 +473,6 @@ monkeyInfo (end).coord.column = 18;    % Column (grid)
 monkeyInfo (end).coord.depth = 3313;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -513,7 +485,6 @@ monkeyInfo (end).coord.column = 15;    % Column (grid)
 monkeyInfo (end).coord.depth = 3900;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -526,7 +497,6 @@ monkeyInfo (end).coord.column = 16;    % Column (grid)
 monkeyInfo (end).coord.depth = 2591;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%% 
@@ -539,7 +509,6 @@ monkeyInfo (end).coord.column = 13;    % Column (grid)
 monkeyInfo (end).coord.depth = 2468;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -552,7 +521,6 @@ monkeyInfo (end).coord.column = 17;    % Column (grid)
 monkeyInfo (end).coord.depth = 2201;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -577,7 +545,6 @@ monkeyInfo (end).coord.column = 13;    % Column (grid)
 monkeyInfo (end).coord.depth = 2584;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%
 %%%%%%%%%%%
@@ -602,7 +569,6 @@ monkeyInfo (end).coord.column = 17;    % Column (grid)
 monkeyInfo (end).coord.depth = 2247;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -615,7 +581,6 @@ monkeyInfo (end).coord.column = 19;    % Column (grid)
 monkeyInfo (end).coord.depth = 3687;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 % 
 % %%%%%%%%%%%
 % %%%%%%%%%%%
@@ -628,7 +593,6 @@ monkeyInfo (end).coord.column = 19;    % Column (grid)
 monkeyInfo (end).coord.depth = 2594;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -641,7 +605,6 @@ monkeyInfo (end).coord.column = 14;    % Column (grid)
 monkeyInfo (end).coord.depth = 2491;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%
 %%%%%%%%%%%
@@ -655,7 +618,6 @@ monkeyInfo (end).coord.column = 14;    % Column (grid)
 monkeyInfo (end).coord.depth = 3434;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 % 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -830,7 +792,6 @@ monkeyInfo (end).coord.column = 18;    % Column (grid)
 monkeyInfo (end).coord.depth = 5018;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -843,7 +804,6 @@ monkeyInfo (end).coord.column = 21;    % Column (grid)
 monkeyInfo (end).coord.depth = 1500;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -856,7 +816,6 @@ monkeyInfo (end).coord.column = 17;    % Column (grid)
 monkeyInfo (end).coord.depth = 1500;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -869,7 +828,6 @@ monkeyInfo (end).coord.column = 18;    % Column (grid)
 monkeyInfo (end).coord.depth = 1600;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -882,7 +840,6 @@ monkeyInfo (end).coord.column = 20;    % Column (grid)
 monkeyInfo (end).coord.depth = 1452;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -895,7 +852,6 @@ monkeyInfo (end).coord.column = 20;    % Column (grid)
 monkeyInfo (end).coord.depth = 2400;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -908,7 +864,6 @@ monkeyInfo (end).coord.column = 20;    % Column (grid)
 monkeyInfo (end).coord.depth = 1790;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -921,7 +876,6 @@ monkeyInfo (end).coord.column = 20;    % Column (grid)
 monkeyInfo (end).coord.depth = 3239;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -934,7 +888,6 @@ monkeyInfo (end).coord.column = 17;    % Column (grid)
 monkeyInfo (end).coord.depth = 1450;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -947,7 +900,6 @@ monkeyInfo (end).coord.column = 19;    % Column (grid)
 monkeyInfo (end).coord.depth = 1832;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -960,7 +912,6 @@ monkeyInfo (end).coord.column = 22;    % Column (grid)
 monkeyInfo (end).coord.depth = 1145;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 % 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -972,7 +923,6 @@ monkeyInfo (end).coord.column = 22;    % Column (grid)
 monkeyInfo (end).coord.depth = 1600;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -985,7 +935,6 @@ monkeyInfo (end).coord.column = 19;    % Column (grid)
 monkeyInfo (end).coord.depth = 1200;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -998,7 +947,6 @@ monkeyInfo (end).coord.column = -18;    % Column (grid)
 monkeyInfo (end).coord.depth = 1853;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 % 
 % %%%%%%%%%%%%%
 % %%%%%%%%%%%%%
@@ -1011,7 +959,6 @@ monkeyInfo (end).coord.column = -18;    % Column (grid)
 monkeyInfo (end).coord.depth = 3550;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -1024,7 +971,6 @@ monkeyInfo (end).coord.column = -17;    % Column (grid)
 monkeyInfo (end).coord.depth = 0;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -1037,7 +983,6 @@ monkeyInfo (end).coord.column = -17;    % Column (grid)
 monkeyInfo (end).coord.depth = 2100;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -1050,7 +995,6 @@ monkeyInfo (end).coord.column = -17;    % Column (grid)
 monkeyInfo (end).coord.depth = 3400;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -1063,7 +1007,6 @@ monkeyInfo (end).coord.column = -20;    % Column (grid)
 monkeyInfo (end).coord.depth = 1568;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 % %%%%%%%%%%%%%
 % %%%%%%%%%%%%%
@@ -1076,7 +1019,6 @@ monkeyInfo (end).coord.column = -20;    % Column (grid)
 monkeyInfo (end).coord.depth = 2450;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 %%%%%%%%%%%%%
 %%%%%%%%%%%%%
@@ -1089,7 +1031,6 @@ monkeyInfo (end).coord.column = -21;    % Column (grid)
 monkeyInfo (end).coord.depth = 1690;   % Depth below gray matter (in microns)
 monkeyInfo (end).channels = 1:16;    % Channel #? (all channels=0)
 monkeyInfo (end).units = 0;      % All units? (sorted units=0; all units=1)
-monkeyInfo (end).tempo_gui = 0;      % Has it been ran in tempo_gui analysis? 0=no, 1=yes.
 
 % 
 
